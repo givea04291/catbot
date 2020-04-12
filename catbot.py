@@ -15,24 +15,18 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-#인사
-    if message.content.startswith(".안녕"):
+#인사 and 일상대화
+    if message.content.startswith("냥이야 안녕"):
         await message.channel.send("다음부턴 고양이말로 인사해라냥")
 
-    if message.content.startswith(".안냥"):
+    if message.content.startswith("냥이야 안냥"):
         await message.channel.send("반갑다냥!")
 
-    if message.content.startswith(".반가워"):
-        await message.channel.send("나도~")
+    if message.content.startswith("냥이야 반가워"):
+        await message.channel.send("나도 반갑다냥")
 
-    if message.content.startswith(".테스트"):
-        embed = discord.Embed(title="ㅇ", description="ㅇ", color=0xFFD9FA)
-        embed.add_field(name="ㅇ", value="ㅇ", inline=True)
-        embed.add_field(name="ㅇ", value="ㅇ", inline=True)
-        embed.add_field(name="ㅇ", value="ㅇ", inline=True)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/698830915207430174/827aaf13e2f1acea.png?width=914&height=514")
-        embed.set_footer(text="ㅇㅇ")
-        await message.channel.send("ㅇㅇㅇㅇㅇ", embed=embed)
+    if message.content.startswith("냥이야 뭐해"):
+        await message.channel.send("할게 없어서 아무것도 안하고있다냥 심심하다냥")
 
 
 
