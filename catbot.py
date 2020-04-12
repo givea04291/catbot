@@ -30,7 +30,7 @@ async def on_message(message):
         embed.add_field(name="ㅇ", value="ㅇ", inline=True)
         embed.add_field(name="ㅇ", value="ㅇ", inline=True)
         embed.add_field(name="ㅇ", value="ㅇ", inline=True)
-        embed.set_image(url="https://discordapp.com/channels/698830301211918648/698830342458703912/698830968458313728")
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/698830915207430174/827aaf13e2f1acea.png?width=914&height=514")
         embed.set_footer(text="ㅇㅇ")
         await message.channel.send("ㅇㅇㅇㅇㅇ", embed=embed)
 
