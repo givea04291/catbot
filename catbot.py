@@ -30,7 +30,7 @@ async def on_message(message):
         embed.add_field(name="ㅇ", value="ㅇ", inline=True)
         embed.add_field(name="ㅇ", value="ㅇ", inline=True)
         embed.add_field(name="ㅇ", value="ㅇ", inline=True)
-        embed.set_image(url="https://i.imgur.com/drmpLCR.png")
+        embed.set_image(url="https://imgur.com/drmpLCR")
         embed.set_footer(text="ㅇㅇ")
         await message.channel.send("ㅇㅇㅇㅇㅇ", embed=embed)
 
