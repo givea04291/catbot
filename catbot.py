@@ -25,6 +25,15 @@ async def on_message(message):
     if message.content.startswith(".반가워"):
         await message.channel.send("나도~")
 
+    if message.content.startswith(".테스트"):
+        embed = discord.Embed(title="ㅇ", description="ㅇ", color=0xFFD9FA)
+        embed.add_field(name="ㅇ", value="ㅇ", inline=True)
+        embed.add_field(name="ㅇ", value="ㅇ", inline=True)
+        embed.add_field(name="ㅇ", value="ㅇ", inline=True)
+        embed.set_image(url="https://i.imgur.com/drmpLCR.png")
+        embed.set_footer(text="ㅇㅇ")
+        await message.channel.send("ㅇㅇㅇㅇㅇ", embed=embed)
+
 
 
 access_token = os.environ["BOT_TOKEN"]
