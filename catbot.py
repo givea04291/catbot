@@ -26,7 +26,7 @@ async def on_message(message):
         await message.channel.send("나도 반갑다냥")
 #중1
     if message.content.startswith("냥이야 거듭제곱"):
-        embed = (color=0x00D8FF)
+        embed = discord.Embed(color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/698905428008108073/2e951eacfe5b6cfc.png")
         await message.channel.send("같은 수나 문자를 거듭하여 곱한 것", embed=embed)
 
