@@ -25,7 +25,7 @@ async def on_message(message):
     if message.content.startswith("냥이야 반가워"):
         await message.channel.send("나도 반갑다냥")
 
-    if message.content.startswith("냥이야"):
+    if message.content == "냥이야":
         await message.channel.send("왜부르냥?")
 #중1
     if message.content.startswith("냥이야 거듭제곱"):
