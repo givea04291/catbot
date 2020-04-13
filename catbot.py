@@ -103,20 +103,7 @@ async def on_message(message):
     if message.content.startswith("냥이야 분배법칙"):
         await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥")
 
-    if message.content.startswith("냥이야 분배법칙"):
-        embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261160800911410/744c440fbb59e606.png")
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261158510559372/a88252ce309c72a3.png")
-        await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥", embed=embed)
-
-    if message.content.startswith("냥이야 분배법칙"):
-        embed = discord.Embed(title="", description="", color=0x)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261160800911410/744c440fbb59e606.png")
-        embed.add_field(name="분배법칙을 사각형의 넓이로 증명하는 것이다냥", inline=False)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261158510559372/a88252ce309c72a3.png")
-        await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥", embed=embed)
-
-
+ㄴ
 
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
