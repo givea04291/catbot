@@ -64,6 +64,17 @@ async def on_message(message):
 
     if message.content.startswith("냥이야 최소공배수"):
         await message.channel.send("공배수 중 가장 작은 공배수다냥")
+# 중1 - 2단원
+    if message.content.startswith("냥이야 양수"):
+        await message.channel.send("0보다 큰 실수다냥")
+
+    if message.content.startswith("냥이야 음수"):
+        await message.channel.send("0보다 작은 실수다냥")
+
+    if message.content.startswith("냥이야 정수"):
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699102744669323274/8338200a5fe87fd4.png")
+        await message.channel.send("양의 정수, 0, 음의 정수를 통튼 것을 말한다냥", embed=embed)
 
 
 
