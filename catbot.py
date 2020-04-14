@@ -96,6 +96,9 @@ async def on_message(message):
         
     if message.content.startswith("냥이야 곱셈의 교환법칙"):
         await message.channel.send("곱셈의 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
+        
+    if message.content.startswith("냥이야 곱셈의 결합법칙"):
+        await message.channel.send("곱셈에서 먼저 계산을 하는 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
 
 
 
