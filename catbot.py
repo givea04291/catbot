@@ -34,7 +34,7 @@ async def on_message(message):
     if message.content == "냥이야":
         await message.channel.send("왜부르냥?")
         await message.channel.send("나한테 하고싶은 말이나 물어보고 싶은게 있으면 '냥이야 할말'로 입력하라냥")
-        await message.channel.send("뭐라고 해야 할지 모르겠다면 '냥이야 목록 명령어목록'를 입력해라냥")
+        await message.channel.send("뭐라고 해야 할지 모르겠다면 '냥이야 목록 명령어목록'을 입력해라냥")
 # 중1 - 1단원
     if message.content.startswith("냥이야 거듭제곱"):
         embed = discord.Embed(color=0x00D8FF)
