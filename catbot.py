@@ -15,6 +15,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+# 목록
+    if message.content.startswith("냥이야 목록"):
+        await message.channel.send("어떤 목록을 찾는거냥?")
+        await message.channel.send("'냥이야 목록이름'으로 알려달라냥")
+        await message.channel.send("어떤 목록이 있는지 모르겠다면 '냥이야 목록 명령어목록'을 입력해라냥")
 # 인사 및 대화
     if message.content.startswith("냥이야 안녕"):
         await message.channel.send("반갑다냥")
@@ -28,6 +33,8 @@ async def on_message(message):
 
     if message.content == "냥이야":
         await message.channel.send("왜부르냥?")
+        await message.channel.send("나한테 하고싶은 말이나 물어보고 싶은게 있으면 '냥이야 할말'로 입력하라냥")
+        await message.channel.send("뭐라고 해야 할지 모르겠다면 '냥이야 목록 명령어목록'를 입력해라냥")
 # 중1 - 1단원
     if message.content.startswith("냥이야 거듭제곱"):
         embed = discord.Embed(color=0x00D8FF)
@@ -113,7 +120,7 @@ async def on_message(message):
     if message.content.startswith("냥이야 유리수"):
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699483090866667551/4b8a15bf99fb7928.png")
-        await message.channel.send("(정수)/(정수)꼴로 나타낼 수 있는 수다냥", embed=embed)
+        await message.channel.send("정수/정수 꼴로 나타낼 수 있는 수다냥", embed=embed)
 
 
 
