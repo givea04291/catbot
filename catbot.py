@@ -102,13 +102,13 @@ async def on_message(message):
 
     if message.content.startswith("냥이야 분배법칙"):
         embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261158510559372/a88252ce309c72a3.png")
-        await message.channel.send("분배법칙을 직사각형의 넓이로 증명해 보았다냥", embed=embed)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261160800911410/744c440fbb59e606.png")
+        await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥", embed=embed)
 
     if message.content.startswith("냥이야 분배법칙"):
         embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261160800911410/744c440fbb59e606.png")
-        await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥", embed=embed)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261158510559372/a88252ce309c72a3.png")
+        await message.channel.send("분배법칙을 직사각형의 넓이로 증명해 보았다냥", embed=embed)
 
 
 
