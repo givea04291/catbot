@@ -15,6 +15,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+# 기타
+    if message.content.startswith("냥이야 원론"):
+        await message.channel.send("《유클리드의 원론》(Στοιχεῖα)은 고대 그리스의 수학자 유클리드가 집필한, '세계 최초의 수학 교과서'로 일컬어지는 책이다냥")
+	await message.channel.send("원론을 인터넷에서 볼 수 있다냥(영어다냥) : https://mathcs.clarku.edu/~djoyce/java/elements/")
+	await message.channel.send("원론을 pdf파일로 다운로드해서 볼 수 있다냥(영어다냥) : https://cdn.discordapp.com/attachments/698830342458703912/699591726549041182/031db884f6b92cdb.pdf")
 # 목록
     if message.content.startswith("냥이야 목록"):
         await message.channel.send("어떤 목록을 찾는거냥?")
@@ -33,8 +38,8 @@ async def on_message(message):
 
     if message.content == "냥이야":
         await message.channel.send("왜부르냥?")
-        await message.channel.send("나한테 하고싶은 말이나 물어보고 싶은게 있으면 '냥이야 할말'로 입력하라냥")
-        await message.channel.send("뭐라고 해야 할지 모르겠다면 '냥이야 목록 명령어목록'을 입력해라냥")
+        await message.channel.send("나한테 하고싶은 말이나 물어보고 싶은게 있으면 '냥이야 "할말"'로 입력하라냥")
+        await message.channel.send("뭐라고 해야 할지 모르겠다면 '냥이야 목록 명령어목록'를 입력해라냥")
 # 중1 - 1단원
     if message.content.startswith("냥이야 거듭제곱"):
         embed = discord.Embed(color=0x00D8FF)
@@ -121,8 +126,25 @@ async def on_message(message):
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699483090866667551/4b8a15bf99fb7928.png")
         await message.channel.send("정수/정수 꼴로 나타낼 수 있는 수다냥", embed=embed)
+# 중1 - 3단원 - 공식
+    if message.content.startswith("냥이야 공식 거리"):
+        await message.channel.send("거리 = 속력 × 시간")
+
+    if message.content.startswith("냥이야 공식 속력"):
+        await message.channel.send("속력 = 거리 ÷ 시간")
+
+    if message.content.startswith("냥이야 공식 시간"):
+        await message.channel.send("시간 = 거리 ÷ 속력")
+
+    if message.content.startswith("냥이야 공식 농도"):
+        await message.channel.send("농도 = 용질(소금)의 양/용액(소금물)의 양 × 100(%)")
+
+    if message.content.startswith("냥이야 공식 용질"):
+        await message.channel.send("용질(소금) = 농도/100(%) × 용액(소금물)의 양")
+
+    if message.content.startswith("냥이야 공식 소금"):
+        await message.channel.send("용질(소금) = 농도/100(%) × 용액(소금물)의 양")
 
 
-        
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
