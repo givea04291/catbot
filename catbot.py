@@ -15,11 +15,6 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-# 기타
-    if message.content.startswith("냥이야 원론"):
-        await message.channel.send("《유클리드의 원론》(Στοιχεῖα)은 고대 그리스의 수학자 유클리드가 집필한, '세계 최초의 수학 교과서'로 일컬어지는 책이다냥")
-	await message.channel.send("원론을 인터넷에서 볼 수 있다냥(영어다냥) : https://mathcs.clarku.edu/~djoyce/java/elements/")
-	await message.channel.send("원론을 pdf파일로 다운로드해서 볼 수 있다냥(영어다냥) : https://cdn.discordapp.com/attachments/698830342458703912/699591726549041182/031db884f6b92cdb.pdf")
 # 목록
     if message.content.startswith("냥이야 목록"):
         await message.channel.send("어떤 목록을 찾는거냥?")
