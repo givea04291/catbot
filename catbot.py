@@ -121,6 +121,11 @@ async def on_message(message):
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699483090866667551/4b8a15bf99fb7928.png")
         await message.channel.send("정수/정수 꼴로 나타낼 수 있는 수다냥", embed=embed)
+        
+    if message.content.startswith("냥이야 테스트"):
+        embed = discord.Embed(color=0x00D8FF)
+        embed.add_field(name="ㅇㅇ", value="https://cdn.discordapp.com/attachments/698830342458703912/699591726549041182/031db884f6b92cdb.pdf", inline=true)
+        await message.channel.send("https://cdn.discordapp.com/attachments/698830342458703912/699591726549041182/031db884f6b92cdb.pdf", embed=embed)
 
 
         
