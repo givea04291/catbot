@@ -64,46 +64,8 @@ async def on_message(message):
 
     if message.content.startswith("냥이야 최소공배수"):
         await message.channel.send("공배수 중 가장 작은 공배수다냥")
-# 중1 - 2단원
-    if message.content.startswith("냥이야 양수"):
-        await message.channel.send("0보다 큰 실수다냥")
 
-    if message.content.startswith("냥이야 음수"):
-        await message.channel.send("0보다 작은 실수다냥")
 
-    if message.content.startswith("냥이야 정수"):
-        embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699102744669323274/8338200a5fe87fd4.png")
-        await message.channel.send("양의 정수, 0, 음의 정수를 통튼 것을 말한다냥", embed=embed)
-
-    if message.content.startswith("냥이야 수직선"):
-        await message.channel.send("직선에 점을 찍어서 숫자(실수)와 대응시킨 선이다냥")
-
-    if message.content.startswith("냥이야 절댓값"):
-        await message.channel.send("수직선 위의 점에 대해 원점으로부터의 거리다냥")
-        await message.channel.send("절댓값의 기호는 '||'이다냥")
-
-    if message.content.startswith("냥이야 부등호"):
-        embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699104938277601381/77ecd8578444a73b.png")
-        await message.channel.send("두 수 또는 식의 크기 비교를 할 때 사용하는 수학기호다냥", embed=embed)
-
-    if message.content.startswith("냥이야 덧셈의 교환법칙"):
-        await message.channel.send("덧셈의 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
-
-    if message.content.startswith("냥이야 덧셈의 결합법칙"):
-        await message.channel.send("덧셈에서 먼저 계산을 하는 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
-
-    if message.content.startswith("냥이야 곱셈의 교환법칙"):
-        await message.channel.send("곱셈의 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
-
-    if message.content.startswith("냥이야 곱셈의 결합법칙"):
-        await message.channel.send("곱셈에서 먼저 계산을 하는 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
-
-    if message.content.startswith("냥이야 분배법칙"):
-        await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥")
-
-ㄴ
 
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
