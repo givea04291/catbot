@@ -110,6 +110,11 @@ async def on_message(message):
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261158510559372/a88252ce309c72a3.png")
         await message.channel.send("분배법칙을 직사각형의 넓이로 증명해 보았다냥", embed=embed)
 
+    if message.content.startswith("냥이야 유리수"):
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699483090866667551/4b8a15bf99fb7928.png")
+        await message.channel.send("(정수)/(정수)꼴로 나타낼 수 있는 수다냥", embed=embed)
+
 
 
 access_token = os.environ["BOT_TOKEN"]
