@@ -75,7 +75,7 @@ async def on_message(message):
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699102744669323274/8338200a5fe87fd4.png")
         await message.channel.send("양의 정수, 0, 음의 정수를 통튼 것을 말한다냥", embed=embed)
-        
+
     if message.content.startswith("냥이야 수직선"):
         await message.channel.send("직선에 점을 찍어서 숫자(실수)와 대응시킨 선이다냥")
 
@@ -93,12 +93,22 @@ async def on_message(message):
 
     if message.content.startswith("냥이야 덧셈의 결합법칙"):
         await message.channel.send("덧셈에서 먼저 계산을 하는 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
-        
+
     if message.content.startswith("냥이야 곱셈의 교환법칙"):
         await message.channel.send("곱셈의 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
-        
+
     if message.content.startswith("냥이야 곱셈의 결합법칙"):
         await message.channel.send("곱셈에서 먼저 계산을 하는 순서를 바꿔도 결과가 변하지 않는다는 법칙이다냥")
+
+    if message.content.startswith("냥이야 분배법칙"):
+        await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥")
+
+    if message.content.startswith("냥이야 분배법칙"):
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261160800911410/744c440fbb59e606.png")
+        embed.add_field(value="분배법칙을 직사각형의 넓이로 증명했다냥", inline=False)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699261158510559372/a88252ce309c72a3.png")
+        await message.channel.send("괄호 안의 식과 밖의 식을 곱할 때 사용하는 법칙이다냥", embed=embed)
 
 
 
