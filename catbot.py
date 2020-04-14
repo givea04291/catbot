@@ -126,24 +126,7 @@ async def on_message(message):
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699483090866667551/4b8a15bf99fb7928.png")
         await message.channel.send("정수/정수 꼴로 나타낼 수 있는 수다냥", embed=embed)
-# 중1 - 3단원 - 공식
-    if message.content.startswith("냥이야 공식 거리"):
-        await message.channel.send("거리 = 속력 × 시간")
 
-    if message.content.startswith("냥이야 공식 속력"):
-        await message.channel.send("속력 = 거리 ÷ 시간")
-
-    if message.content.startswith("냥이야 공식 시간"):
-        await message.channel.send("시간 = 거리 ÷ 속력")
-
-    if message.content.startswith("냥이야 공식 농도"):
-        await message.channel.send("농도 = 용질(소금)의 양/용액(소금물)의 양 × 100(%)")
-
-    if message.content.startswith("냥이야 공식 용질"):
-        await message.channel.send("용질(소금) = 농도/100(%) × 용액(소금물)의 양")
-
-    if message.content.startswith("냥이야 공식 소금"):
-        await message.channel.send("용질(소금) = 농도/100(%) × 용액(소금물)의 양")
 
 
 access_token = os.environ["BOT_TOKEN"]
