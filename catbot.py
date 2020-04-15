@@ -241,6 +241,48 @@ async def on_message(message):
                             "/2987fd047a61ccfd.png")
         await message.channel.send("곧게 뻗은 선을 추상화한 개념이다냥", embed=embed)
 
+    if message.content.startswith("냥이야 반직선"):
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(
+            url="https://media.discordapp.net/attachments/698830342458703912/699579918563934208/f8cb6a601e9905d8.png")
+        await message.channel.send("점 하나에서 시작하여 한 방향으로 무한히 뻗어나가는 선이다냥", embed=embed)
+
+    if message.content.startswith("냥이야 선분"):
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(
+            url="https://media.discordapp.net/attachments/698830342458703912/699579920757817364/d609c097c16f1200.png")
+        await message.channel.send("양쪽에 끝나는 점이 있는, 직선의 부분이다냥", embed=embed)
+
+    if message.content.startswith("냥이야 중점"):
+        await message.channel.send("주어진 선분을 같은 길이로 나누는 점을 일컫는다")
+
+    if message.content == "냥이야 각":
+        await message.channel.send("반직선과 반직선과 맞붙었을 때 꼭짓점 안팎에서 생기는 공간이다냥, 그리고 그것의 크기를 각도라 한다냥. 기호 ∠를 사용하여 나타내고, "
+                                   "주로 θ(세타)로 표기한다냥")
+
+    if message.content.startswith("냥이야 각도"):
+        await message.channel.send("반직선과 반직선과 맞붙었을 때 꼭짓점 안팎에서 생기는 공간이다냥, 그리고 그것의 크기를 각도라 한다냥. 기호 ∠를 사용하여 나타내고, "
+                                   "주로 θ(세타)로 표기한다냥")
+
+    if message.content.startswith("냥이야 맞꼭지각"):
+        await message.channel.send("교차하는 두 직선이 한 점에서 만날 때 생기는 4개의 각 중 서로 이웃하지 않는 각을 말한다냥")
+
+    if message.content.startswith("냥이야 동위각"):
+        await message.channel.send("두 직선이 다른 한 직선과 만날 때 각 직선의 같은 쪽에서 이루는 각이다냥")
+
+    if message.content.startswith("냥이야 엇각"):
+        await message.channel.send("서로 다른 두 직선이 다른 한 직선과 만날 때 생기는 각 중에 두 직선 사이에 마주보고 있는 각에서 두 직선과 만나는 한 직선을 상대로 서로 "
+                                   "반대편에 존재하는 각을 말한다냥")
+
+    if message.content.startswith("냥이야 직교"):
+        await message.channel.send("두 개의 직선(또는 반직선 또는 선분)이 만나 이루는 각이 직각일 때, 두 직선이 직교한다고 한다냥. 기호 ⊥를 사용하여 나타낸다냥. ⊥ㅎㅎ")
+
+    if message.content == "냥이야 수선":
+        await message.channel.send("두 개의 직선(또는 반직선 또는 선분)이 직교할 때, 한 직선을 다른 직선의 수선이라고 한다냥")
+
+    if message.content.startswith("냥이야 수선의 발"):
+        await message.channel.send("직선 위에 있지 않은 점을 지나는 직선이 먼저의 직선과 직교할 때 생기는 교점이다냥")
+
 
 access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
