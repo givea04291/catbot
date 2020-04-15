@@ -205,8 +205,9 @@ async def on_message(message):
 
     if message.content.startswith("냥이야 사분면"):
         embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699982808415731752/ca90b9bb665cac64.png")
-        await message.channel.send("좌표평면이 좌표축으로 나누어진 네 영역이다냥", embe=embed)
+        embed.set_image(
+            url="https://media.discordapp.net/attachments/698830342458703912/699982808415731752/ca90b9bb665cac64.png")
+        await message.channel.send("좌표평면이 좌표축으로 나누어진 네 개의 영역이다냥", embed=embed)
 
     if message.content.startswith("냥이야 정비례"):
         await message.channel.send("두 변수 x와 y에 대해 x가 2배, 3배, 4배, ...로 변함에 따라 y도 2배, 3배, 4배, ...로 변하는 관계를 말한다냥")
