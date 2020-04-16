@@ -82,7 +82,7 @@ async def on_message(message):
     if message.content.startswith("냥이야 인수"):
         await message.channel.send("어떤 수나 식을 곱하기만으로 표현했을 때 곱해지는 각각의 것들이다냥")
 
-    if message.content.startswith("냥이야 소인수"):
+    if message.content == "냥이야 소인수":
         await message.channel.send("인수 중에서 소수인 것들이다냥")
 
     if message.content.startswith("냥이야 소인수분해"):
