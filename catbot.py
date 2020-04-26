@@ -9,7 +9,7 @@ client: Client = discord.Client()
 @client.event
 async def on_ready():
     print(client.user.id)
-    print("준비 완료다냥!")
+    print("후아아암~ 잘 잤다냥!")
     game = discord.Game("인간들 놀아주기")
     await client.change_presence(status=discord.Status.online, activity=game)
 
@@ -17,60 +17,66 @@ async def on_ready():
 @client.event
 async def on_message(message):
     # 기타
-    if message.content.startswith("냥이야 원론"):
+    if message.content == "냥이야 원론":
         await message.channel.send("《유클리드의 원론》(Στοιχεῖα)은 고대 그리스의 수학자 유클리드가 집필한, '세계 최초의 수학 교과서'로 일컬어지는 책이다냥")
-        await message.channel.send("원론을 인터넷에서 볼 수 있다냥(영어다냥) : https://mathcs.clarku.edu/~djoyce/java/elements/")
-        await message.channel.send("원론을 pdf파일로 다운로드해서 볼 수 있다냥(영어다냥) : "
-                                   "https://cdn.discordapp.com/attachments/698830342458703912/699591726549041182"
-                                   "/031db884f6b92cdb.pdf")
+        await message.channel.send("읽을 수 있다면 읽어봐라냥 : https://mathcs.clarku.edu/~djoyce/java/elements/")
 
     # 목록
-    if message.content.startswith("냥이야 목록"):
+    if message.content == "냥이야 목록":
         await message.channel.send("어떤 목록을 찾는거냥?")
-        await message.channel.send("'냥이야 목록이름'으로 알려달라냥")
-        await message.channel.send("어떤 목록이 있는지 모르겠다면 '냥이야 목록 명령어목록'을 입력해라냥")
+        await message.channel.send("어떤 목록이 있는지 모르겠다면 '냥이야 목록 목록이름'을 입력해라냥")
 
     # 공식 - 중1 - 3단원
-    if message.content.startswith("냥이야 공식 거리"):
+    if message.content == "냥이야 공식 거리":
         await message.channel.send("거리 = 속력 × 시간")
 
-    if message.content.startswith("냥이야 공식 속력"):
+    if message.content == "냥이야 공식 속력":
         await message.channel.send("속력 = 거리 ÷ 시간")
 
-    if message.content.startswith("냥이야 공식 시간"):
+    if message.content == "냥이야 공식 시간":
         await message.channel.send("시간 = 거리 ÷ 속력")
 
-    if message.content.startswith("냥이야 공식 농도"):
+    if message.content == "냥이야 공식 농도":
         await message.channel.send("농도 = 용질(소금)의 양/용액(소금물)의 양 × 100(%)")
 
-    if message.content.startswith("냥이야 공식 용질"):
+    if message.content == "냥이야 공식 용질":
         await message.channel.send("용질(소금) = 농도/100(%) × 용액(소금물)의 양")
 
-    if message.content.startswith("냥이야 공식 소금"):
+    if message.content == "냥이야 공식 소금":
         await message.channel.send("용질(소금) = 농도/100(%) × 용액(소금물)의 양")
 
-    # 인사 및 대화
-    if message.content.startswith("냥이야 안녕"):
+    # 대화
+    if message.content == "냥이야 안녕":
         await message.channel.send("반갑다냥")
         await message.channel.send("하지만 다음부턴 고양이말로 인사해라냥")
 
-    if message.content.startswith("냥이야 안냥"):
+    if message.content == "냥이야 안냥":
         await message.channel.send("반갑다냥!")
 
-    if message.content.startswith("냥이야 반가워"):
+    if message.content == "냥이야 반가워":
         await message.channel.send("나도 반갑다냥")
 
     if message.content == "냥이야":
         await message.channel.send("왜부르냥?")
-        await message.channel.send("나한테 하고싶은 말이나 물어보고 싶은게 있으면 '냥이야 할말'로 입력하라냥")
-        await message.channel.send("뭐라고 해야 할지 모르겠다면 '냥이야 목록 명령어목록'을 입력해라냥")
+        await message.channel.send("나한테 하고싶은 말이나 물어보고 싶은게 있으면 '냥이야 [할말]'로 입력하라냥")
 
-    # 중1 - 1단원
-    if message.content.startswith("냥이야 거듭제곱"):
-        embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(
-            url="https://media.discordapp.net/attachments/698830342458703912/698905428008108073/2e951eacfe5b6cfc.png")
-        await message.channel.send("같은 수나 문자를 거듭하여 곱한 것이다냥", embed=embed)
+    if message.content == "냥이야 [할말]":
+        await message.channel.send("바보냥?")
+        await message.channel.send("할말을 하라는거다냥")
+
+    # 증명
+
+    # 수학
+    if message.content == "냥이야 거듭제곱":
+        await message.channel.send("주어진 수나 문자를 주어진 횟수만큼 여러 번 곱하는 연산이다냥")
+
+    if message.content == "냥이야 거듭제곱 정수":
+        embed = discord.Embed(title="정수 제곱 정의", color=0x00D8FF)
+        embed.add_field(name="지수가 0보다 클 때", value="실수 a와 양의 정수 n에 대하여, a의 n제곱은 다음과 같다", inline=True)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703903563331665931"
+                            "/eca4b2eb71d75388.png")
+        embed.add_field(name="지수가 0일 때", value="0이 아닌 실수 a에 대하여, a의 0제곱은 다음과 같다 (0의 0제곱은 정의하지 않는다)", inline=True)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703904503266541629/0.png")
 
     if message.content.startswith("냥이야 소수"):
         await message.channel.send("소수(素數)는 약수의 개수가 2개인 자연수다냥")
