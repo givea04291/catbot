@@ -71,7 +71,7 @@ async def on_message(message):
         await message.channel.send("주어진 수나 문자를 주어진 횟수만큼 여러 번 곱하는 연산이다냥")
 
     if message.content == "냥이야 거듭제곱 정수":
-        embed = discord.Embed(title="정수 제곱 정의", color=0x00D8FF)
+        embed = discord.Embed(color=0x00D8FF)
         embed.add_field(name="지수가 0보다 클 때", value="실수 a와 양의 정수 n에 대하여, a의 n제곱은 다음과 같다", inline=True)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703903563331665931"
                             "/eca4b2eb71d75388.png")
