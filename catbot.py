@@ -72,20 +72,23 @@ async def on_message(message):
 
     if message.content == "냥이야 거듭제곱 정수":
         embed = discord.Embed(color=0x00D8FF)
-        embed.add_field(name="지수가 0보다 클 때", value="실수 a와 양의 정수 n에 대하여, a의 n제곱은 다음과 같다", inline=False)
+        embed.add_field(value="실수 a와 양의 정수 n에 대하여, a의 n제곱은 다음과 같다", inline=False)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703903563331665931"
                             "/eca4b2eb71d75388.png")
+        await message.channel.send("지수가 0보다 클 때", embed=embed)
 
     if message.content == "냥이야 거듭제곱 정수":
         embed = discord.Embed(color=0x00D8FF)
-        embed.add_field(name="지수가 0일 때", value="0이 아닌 실수 a에 대하여, a의 0제곱은 다음과 같다 (0의 0제곱은 정의하지 않는다)", inline=False)
+        embed.add_field(value="0이 아닌 실수 a에 대하여, a의 0제곱은 다음과 같다 (0의 0제곱은 정의하지 않는다)", inline=False)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703904503266541629/0.png")
+        await message.channel.send("지수가 0일 때", embed=embed)
 
     if message.content == "냥이야 거듭제곱 정수":
         embed = discord.Embed(color=0x00D8FF)
-        embed.add_field(name="지수가 0보다 작을 때", value="0이 아닌 실수 a와 음의 정수 -n에 대하여, a의 -n제곱은 다음과 같다", inline=False)
+        embed.add_field(value="0이 아닌 실수 a와 음의 정수 -n에 대하여, a의 -n제곱은 다음과 같다", inline=True)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703908467630669844"
                             "/9d771c0db725b4c4.png")
+        await message.channel.send("지수가 0보다 작을 때", embed=embed)
 
     if message.content.startswith("냥이야 소수"):
         await message.channel.send("소수(素數)는 약수의 개수가 2개인 자연수다냥")
