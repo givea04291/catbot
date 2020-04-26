@@ -75,8 +75,6 @@ async def on_message(message):
         embed.add_field(name="지수가 0보다 클 때", value="실수 a와 양의 정수 n에 대하여, a의 n제곱은 다음과 같다", inline=True)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703903563331665931"
                             "/eca4b2eb71d75388.png")
-        embed.add_field(name="지수가 0일 때", value="0이 아닌 실수 a에 대하여, a의 0제곱은 다음과 같다 (0의 0제곱은 정의하지 않는다)", inline=True)
-        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703904503266541629/0.png")
 
     if message.content.startswith("냥이야 소수"):
         await message.channel.send("소수(素數)는 약수의 개수가 2개인 자연수다냥")
