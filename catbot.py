@@ -77,96 +77,125 @@ async def on_message(message):
     if message.content == "냥이야 거듭제곱":
         await message.channel.send("주어진 수나 문자를 주어진 횟수만큼 여러 번 곱하는 연산이다냥")
 
-    if message.content.startswith("냥이야 거듭제곱 정수"):
+    if message.content == "냥이야 거듭제곱 정수":
         embed = discord.Embed(description="실수 a와 양의 정수 n에 대하여, a의 n제곱은 다음과 같다", color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703903563331665931"
                             "/eca4b2eb71d75388.png")
         await message.channel.send("지수가 0보다 클 때", embed=embed)
-
-    if message.content.startswith("냥이야 거듭제곱 정수"):
+    if message.content == "냥이야 거듭제곱 정수":
         embed = discord.Embed(description="0이 아닌 실수 a에 대하여, a의 0제곱은 다음과 같다 (0의 0제곱은 정의하지 않는다)", color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703904503266541629/0.png")
         await message.channel.send("지수가 0일 때", embed=embed)
-
-    if message.content.startswith("냥이야 거듭제곱 정수"):
+    if message.content == "냥이야 거듭제곱 정수":
         embed = discord.Embed(description="0이 아닌 실수 a와 음의 정수 -n에 대하여, a의 -n제곱은 다음과 같다", color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703908467630669844"
                             "/9d771c0db725b4c4.png")
         await message.channel.send("지수가 0보다 작을 때", embed=embed)
 
-    if message.content.startswith("냥이야 거듭제곱 유리수"):
+    if message.content == "냥이야 거듭제곱 유리수":
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704137292817891348"
                             "/165238191020198b.png")
         embed.set_footer(text="두 정수 m,n은 서로소이고, n은 0보다 크다")
         await message.channel.send("유리수 지수를 다음과 같다고 한다면", embed=embed)
-
-    if message.content.startswith("냥이야 거듭제곱 유리수"):
+    if message.content == "냥이야 거듭제곱 유리수":
         embed = discord.Embed(description="음이 아닌 실수 a에 대하여", color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704137860139188346"
                             "/2c1c2773a43f9e08.png")
         await message.channel.send("이 거듭제곱은 다음과 같이 정의된다냥", embed=embed)
 
-    if message.content.startswith("냥이야 거듭제곱 실수"):
+    if message.content == "냥이야 실수":
         embed = discord.Embed(description="양의 실수 a와 x에 대하여, a의 x제곱을 다음과 같이 정의한다", color=0x00D8FF)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704138739210911814"
                             "/4118614901cf5ceb.png")
         embed.set_footer(text="유리수 q가 x에 한없이 가깝다(근사)")
         await message.channel.send("실수 제곱은 유리수 제곱의 근사를 이용해 정의할 수 있다냥", embed=embed)
-        
-    if message.content.startswith("냥이야 거듭제곱 복소수"):
+
+    if message.content == "냥이야 복소수":
         await message.channel.send("개발자가 이해를 못했다냥")
 
-    if message.content.startswith("냥이야 소수"):
+    if message.content == "냥이야 소수":
         await message.channel.send("소수(素數)는 약수의 개수가 2개인 자연수다냥")
         await message.channel.send("소수(小數)는 0보다 크고 1보다 작은 실수다냥")
 
-    if message.content.startswith("냥이야 합성수"):
+    if message.content == "냥이야 합성수":
         await message.channel.send("약수의 개수가 3개 이상인 자연수, 즉 1보다 큰 자연수 중 소수가 아닌 자연수다냥")
 
-    if message.content.startswith("냥이야 인수"):
-        await message.channel.send("어떤 수나 식을 곱하기만으로 표현했을 때 곱해지는 각각의 것들이다냥")
+    if message.content == "냥이야 인수":
+        await message.channel.send("정수 또는 정식을 몇 개의 곱의 꼴로 나타낼 때, 그것의 각 구성요소다냥")
+
+    if message.content == "냥이야 정식":
+        await message.channel.send("단항식과 다항식을 총칭해서 정식(整式)이라고 한다냥")
 
     if message.content == "냥이야 소인수":
         await message.channel.send("인수 중에서 소수인 것들이다냥")
 
-    if message.content.startswith("냥이야 소인수분해"):
-        await message.channel.send("자연수를 소인수들의 곱으로 표현하는 것이다냥")
+    if message.content == "냥이야 소인수분해":
+        await message.channel.send("합성수를 소수의 곱으로 나타내는 방법이다냥")
 
-    if message.content.startswith("냥이야 공약수"):
+    if message.content == "냥이야 공약수":
         await message.channel.send("두 개 이상의 자연수의 공통된 약수다냥")
 
-    if message.content.startswith("냥이야 최대공약수"):
+    if message.content == "냥이야 최대공약수":
         await message.channel.send("공약수 중 가장 큰 공약수다냥")
 
-    if message.content.startswith("냥이야 서로소"):
+    if message.content == "냥이야 서로소":
         await message.channel.send("공약수가 1뿐인 2개 이상의 자연수, 즉 최대공약수가 1인 자연수들이다냥")
 
-    if message.content.startswith("냥이야 공배수"):
+    if message.content == "냥이야 공배수":
         await message.channel.send("두 개 이상의 자연수의 공통된 배수다냥")
 
-    if message.content.startswith("냥이야 최소공배수"):
+    if message.content == "냥이야 최소공배수":
         await message.channel.send("공배수 중 가장 작은 공배수다냥")
 
-    # 중1 - 2단원
-    if message.content.startswith("냥이야 양수"):
+    if message.content == "냥이야 양수":
         await message.channel.send("0보다 큰 실수다냥")
 
-    if message.content.startswith("냥이야 음수"):
+    if message.content == "냥이야 음수":
         await message.channel.send("0보다 작은 실수다냥")
 
-    if message.content.startswith("냥이야 정수"):
+    if message.content == "냥이야 정수":
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(
             url="https://media.discordapp.net/attachments/698830342458703912/699102744669323274/8338200a5fe87fd4.png")
-        await message.channel.send("양의 정수, 0, 음의 정수를 통튼 것을 말한다냥", embed=embed)
+        await message.channel.send("양의 정수, 0, 음의 정수로 이루어진 수의 체계이다냥", embed=embed)
+        await message.channel.send("정수 전체의 집합은 기호 ℤ를 사용한다냥")
 
-    if message.content.startswith("냥이야 수직선"):
-        await message.channel.send("직선에 점을 찍어서 숫자(실수)와 대응시킨 선이다냥")
+    if message.content == "냥이야 자연수":
+        await message.channel.send("수를 셀 때나 순서를 매길 때 사용되는 수를 말하고, 양의 정수라고 할 수 있다냥")
+        await message.channel.send("자연수 전체의 집합은 기호 ℕ을 사용하고, 가장 작은 크기의 무한 집합이다냥")
 
-    if message.content.startswith("냥이야 절댓값"):
-        await message.channel.send("수직선 위의 점에 대해 원점으로부터의 거리다냥")
+    if message.content == "냥이야 수직선":
+        await message.channel.send("수직선 [수ː직썬]은 실수 하나 하나를 점으로 하여 무한히 수평으로 뻗혀있는 직선이다냥")
+
+    if message.content == "냥이야 실직선":
+        await message.channel.send("실직선(또는 실수 직선)은 그 위의 점들이 모두 실수인 직선이다냥")
+
+    if message.content == "냥이야 절댓값":
+        await message.channel.send("실수가 실직선의 원점과, 복소수가 복소평면의 원점과 떨어진 거리를 나타내는 음이 아닌 실수다냥")
         await message.channel.send("절댓값의 기호는 '||'이다냥")
+
+    if message.content == "냥이야 절댓값 실수":
+        embed = discord.Embed(description="실수의 절댓값은 그 실수의 숫자 부분만 남겨두고 부호를 버려 얻는 음이 아닌 실수이다.", color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704264816461742170"
+                            "/4f30a516cb52ec81.png")
+        await message.channel.send("실수 x의 절댓값은 다음과 같이 정의된다냥", embed=embed)
+    if message.content == "냥이야 절댓값 실수":
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704264223013863474"
+                            "/ba76fc5565848a35.png")
+        await message.channel.send("실수에서 절댓값 함수의 그래프다냥", embed=embed)
+
+    if message.content == "냥이야 절댓값 복소수":
+        embed = discord.Embed(description="Re z :  z의 실수부, Im z : z의 허수부", color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704266617470582784"
+                            "/fcf3118a1f491733.png")
+        await message.channel.send("복소수 z의 절댓값은 다음과 같이 정의된다냥", embed=embed)
+    if message.content == "냥이야 절댓값 복소수":
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704266646344433714"
+                            "/3056f6038ee5dab2.png")
+        await message.channel.send("복소수의 절댓값 r을 복소평면에서 보여주겠다냥", embed=embed)
 
     if message.content.startswith("냥이야 부등호"):
         embed = discord.Embed(color=0x00D8FF)
