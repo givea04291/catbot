@@ -65,6 +65,13 @@ async def on_message(message):
         await message.channel.send("할말을 하라는거다냥")
 
     # 증명
+    if message.content == "냥이야 증명 소수":
+        embed = discord.Embed(title="유클리드의 정리에 따르면", color=0x00D8FF)
+        embed.add_field(name="제9권 정리 20", value="유한 개의 소수가 존재한다고 가정하고, 이 유한 개의 소수들을 모두 곱한 값에 1을 더한다. 그 결과값은 다른 어떤 소수로 "
+                                                "나누어도 나머지가 1이므로 어떤 소수로도 나누어떨어지지 않는 수가 된다. 따라서 이 수가 소수라면 기존의 최대소수보다 큰 "
+                                                "소수가 있다는 것이 증명되고, 이 수가 소수가 아니라고 해도 또다른 소수가 있어야 한다는 것을 의미하기 때문에 소수가 "
+                                                "유한하다는 애초 가정에 모순이 존재함을 알 수 있다.", inline=False)
+        await message.channel.send("소수의 무한함을 증명한다냥", embed=embed)
 
     # 수학
     if message.content == "냥이야 거듭제곱":
@@ -86,6 +93,29 @@ async def on_message(message):
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/703908467630669844"
                             "/9d771c0db725b4c4.png")
         await message.channel.send("지수가 0보다 작을 때", embed=embed)
+
+    if message.content.startswith("냥이야 거듭제곱 유리수"):
+        embed = discord.Embed(color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704137292817891348"
+                            "/165238191020198b.png")
+        embed.set_footer(text="두 정수 m,n은 서로소이고, n은 0보다 크다")
+        await message.channel.send("유리수 지수를 다음과 같다고 한다면", embed=embed)
+
+    if message.content.startswith("냥이야 거듭제곱 유리수"):
+        embed = discord.Embed(description="음이 아닌 실수 a에 대하여", color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704137860139188346"
+                            "/2c1c2773a43f9e08.png")
+        await message.channel.send("이 거듭제곱은 다음과 같이 정의된다냥", embed=embed)
+
+    if message.content.startswith("냥이야 거듭제곱 실수"):
+        embed = discord.Embed(description="양의 실수 a와 x에 대하여, a의 x제곱을 다음과 같이 정의한다", color=0x00D8FF)
+        embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/704138739210911814"
+                            "/4118614901cf5ceb.png")
+        embed.set_footer(text="유리수 q가 x에 한없이 가깝다(근사)")
+        await message.channel.send("실수 제곱은 유리수 제곱의 근사를 이용해 정의할 수 있다냥", embed=embed)
+        
+    if message.content.startswith("냥이야 거듭제곱 복소수"):
+        await message.channel.send("개발자가 이해를 못했다냥")
 
     if message.content.startswith("냥이야 소수"):
         await message.channel.send("소수(素數)는 약수의 개수가 2개인 자연수다냥")
