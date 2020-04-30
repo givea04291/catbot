@@ -94,7 +94,7 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if message.content == "냥이야 증명 맞꼭지각":
-        embed = discord.Embed(title="유클리드의 원론(Στοιχεῖα)에서", color=0x00D8FF)
+        embed = discord.Embed(title="유클리드의 원론(Στοιχεῖα)에서", color=0x8041D9)
         embed.add_field(name="제1권 명제 15", value="두 직선이 한 점에서 만나면 맞꼭지각은 서로 같다", inline=False)
         embed.add_field(name="증명", value="두 직선이 한 점에서 만날 때 생기는 네 개의 각을 각각 ∠A, ∠B, ∠C, ∠D라 할 때, ∠A + ∠D는 평각이므로 180º이고, "
                                          "같은 원리로 ∠A + ∠C = 180º이다. 그러므로 ∠D = 180º - ∠A = ∠C이고, 같은 원리로 ∠A = ∠ B이다",
@@ -104,7 +104,7 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if message.content == "냥이야 증명 평행 동위각":
-        embed = discord.Embed(description="서로 다른 평행한 두 직선과 한 직선이 만나 생기는 동위각의 크기는 같으며 그 역도 성립한다", color=0x00D8FF)
+        embed = discord.Embed(description="서로 다른 평행한 두 직선과 한 직선이 만나 생기는 동위각의 크기는 같으며 그 역도 성립한다", color=0x8041D9)
         embed.add_field(name="증명", value="평행하는 두 직선 l, m과 만나는 직선이 직선 l과 만나는 점을 점 A, 직선 m과 만나는 점을 점 C라 하고, 점 A, "
                                          "C에서 내린 수선의 "
                                          "발을 각각 점 B, D라 하자. △ABC, △CDA에 대해, □ABCD가 직사각형이므로 선분 BC = 선분 DA, 선분 AB = 선분 "
@@ -115,9 +115,11 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     if message.content == "냥이야 증명 평행 엇각":
-        embed = discord.Embed(description="서로 다른 평행한 두 직선과 한 직선이 만나 생기는 엇각의 크기는 같으며 그 역도 성립한다", color=0x00D8FF)
-        embed.add_field(name="증명", value="두 직선이 l//m일 때, ∠c = ∠a (동위각), ∠a = ∠b (맞꼭지각), 따라서 ∠c = ∠b이므로 평행하는 두 직선에 대한 엇각의 크기는 같다", inline=False)
-        embed.set_image(url="https://media.discordapp.net/attachments/705255540410023978/705259071766265876/b1767688faeda8b3.png")
+        embed = discord.Embed(description="서로 다른 평행한 두 직선과 한 직선이 만나 생기는 엇각의 크기는 같으며 그 역도 성립한다", color=0x8041D9)
+        embed.add_field(name="증명", value="두 직선이 l//m일 때, ∠c = ∠a (동위각), ∠a = ∠b (맞꼭지각), 따라서 ∠c = ∠b이므로 평행하는 두 직선에 대한 "
+                                         "엇각의 크기는 같다", inline=False)
+        embed.set_image(url="https://media.discordapp.net/attachments/705255540410023978/705259071766265876"
+                            "/b1767688faeda8b3.png")
         await message.channel.send(embed=embed)
 
     # 수학
