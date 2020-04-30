@@ -21,6 +21,9 @@ async def on_message(message):
         await message.channel.send("《유클리드의 원론》(Στοιχεῖα)은 고대 그리스의 수학자 유클리드가 집필한, '세계 최초의 수학 교과서'로 일컬어지는 책이다냥")
         await message.channel.send("읽을 수 있다면 읽어봐라냥 : https://mathcs.clarku.edu/~djoyce/java/elements/")
 
+    if message.content == "냥이야 노유현":
+        await message.channel.send("게이? 게이!")
+
     # 목록
     if message.content == "냥이야 목록":
         await message.channel.send("어떤 목록을 찾는거냥?")
@@ -56,7 +59,7 @@ async def on_message(message):
                                    "a × (b × c)가 성립하면, 이 연산은 결합법칙을 만족한다냥")
 
     if message.content == "냥이야 분배법칙":
-        embed = discord.Embed(description="주어진 집합 S와 S에 대한 두 연산 •와 +에 대해, 만약 연산 •이", color=0x00D8FF)
+        embed = discord.Embed(description="주어진 집합 S와 S에 대한 두 연산 •와 +에 대해, 만약 연산 •이", color=0xFFE400)
         embed.add_field(name="S의 임의의 원소 x, y, z에 대해", value="x • (y + z) = (x • y) + (x • z)가 성립하면 연산 •은 연산 +에 대해 "
                                                             "좌분배법칙이 성립한다", inline=False)
         embed.add_field(name="S의 임의의 원소 x, y, z에 대해", value="(y + z) • x = (y • x) + (z • x)가 성립하면 연산 •은 연산 +에 대해 "
@@ -64,6 +67,18 @@ async def on_message(message):
         embed.add_field(name="분배법칙", value="연산 +에 대해 좌분배법칙과 우분배법칙이 모두 성립하면 연산 •는 연산 +에 대해 분배법칙이 성립한다", inline=False)
         await message.channel.send(embed=embed)
         await message.channel.send("만약 연산 •에 대해 교환법칙이 성립하면 위의 세 조건은 모두 같은 말이 된다냥")
+
+    if message.content == "냥이야 공식 정다각형 내각":
+        embed = discord.Embed(color=0xFFE400)
+        embed.add_field(name="정n각형의 한 내각의 크기", value="{180º × (n - 2)} / n", inline=False)
+        await message.channel.send(embed=embed)
+
+    if message.content == "냥이야 공식 정다각형 넓이":
+        embed = discord.Embed(description="한 변의 길이가 t인 정n각형의 넓이 A", color=0xFFE400)
+        embed.set_image(url="https://media.discordapp.net/attachments/705365168581771274/705365248995098804"
+                            "/3a38c8fe6bcb39ad.png")
+        embed.set_footer(text="cot θ = 1/tan θ")
+        await message.channel.send(embed=embed)
 
     # 대화
     if message.content == "냥이야 안녕":
@@ -386,6 +401,24 @@ async def on_message(message):
 
     if message.content == "냥이야 수선의 발":
         await message.channel.send("직선 위에 있지 않은 점을 지나는 직선이 먼저의 직선과 직교할 때 생기는 교점이다냥")
+
+    if message.content == "냥이야 대변":
+        await message.channel.send("대변(對邊)은 삼각형에서 한 꼭짓점과 마주보는 변이고, 사각형에서는 한 변과 마주모는 변이다냥")
+
+    if message.content == "냥이야 대각":
+        await message.channel.send("다각형 내에서 한 각 또는 한 변과 서로 마주 대하여 있는 각이다냥")
+
+    if message.content == "냥이야 다각형":
+        await message.channel.send("한 평면 위에 있으면서 유한개의 선분들이 차례로 이어져 이루어진 경로를 말한다냥")
+
+    if message.content == "냥이야 정다각형":
+        await message.channel.send("모든 각의 크기가 같고 모든 변의 길이도 같은 다각형이다냥")
+
+    if message.content == "냥이야":
+        await message.channel.send("")
+
+    if message.content == "냥이야":
+        await message.channel.send("")
 
 
 access_token = os.environ["BOT_TOKEN"]
