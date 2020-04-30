@@ -93,6 +93,33 @@ async def on_message(message):
                                                 "유한하다는 애초 가정에 모순이 존재함을 알 수 있다.", inline=False)
         await message.channel.send(embed=embed)
 
+    if message.content == "냥이야 증명 맞꼭지각":
+        embed = discord.Embed(title="유클리드의 원론(Στοιχεῖα)에서", color=0x00D8FF)
+        embed.add_field(name="제1권 명제 15", value="두 직선이 한 점에서 만나면 맞꼭지각은 서로 같다", inline=False)
+        embed.add_field(name="증명", value="두 직선이 한 점에서 만날 때 생기는 네 개의 각을 각각 ∠A, ∠B, ∠C, ∠D라 할 때, ∠A + ∠D는 평각이므로 180º이고, "
+                                         "같은 원리로 ∠A + ∠C = 180º이다. 그러므로 ∠D = 180º - ∠A = ∠C이고, 같은 원리로 ∠A = ∠ B이다",
+                        inline=False)
+        embed.set_image(url="https://media.discordapp.net/attachments/705255540410023978/705255709872226326"
+                            "/7f89427ca928c8b7.png")
+        await message.channel.send(embed=embed)
+
+    if message.content == "냥이야 증명 평행 동위각":
+        embed = discord.Embed(description="서로 다른 평행한 두 직선과 한 직선이 만나 생기는 동위각의 크기는 같으며 그 역도 성립한다", color=0x00D8FF)
+        embed.add_field(name="증명", value="평행하는 두 직선 l, m과 만나는 직선이 직선 l과 만나는 점을 점 A, 직선 m과 만나는 점을 점 C라 하고, 점 A, "
+                                         "C에서 내린 수선의 "
+                                         "발을 각각 점 B, D라 하자. △ABC, △CDA에 대해, □ABCD가 직사각형이므로 선분 BC = 선분 DA, 선분 AB = 선분 "
+                                         "CD, ∠ABC = ∠CDA이므로 △ABC ≡ △CDA (SAS합동)이다. 따라서 ∠ACD = ∠CAB이고, ∠CAB와 ∠A는 "
+                                         "맞꼭지각이므로 ∠ACD = ∠A, 즉 평행하는 두 직선에 대한 동위각의 크기는 같다.", inline=False)
+        embed.set_image(url="https://media.discordapp.net/attachments/705255540410023978/705255746102755398"
+                            "/d399ed151a47d713.png")
+        await message.channel.send(embed=embed)
+
+    if message.content == "냥이야 증명 평행 엇각":
+        embed = discord.Embed(description="서로 다른 평행한 두 직선과 한 직선이 만나 생기는 엇각의 크기는 같으며 그 역도 성립한다", color=0x00D8FF)
+        embed.add_field(name="증명", value="두 직선이 l//m일 때, ∠c = ∠a (동위각), ∠a = ∠b (맞꼭지각), 따라서 ∠c = ∠b이므로 평행하는 두 직선에 대한 엇각의 크기는 같다", inline=False)
+        embed.set_image(url="https://media.discordapp.net/attachments/705255540410023978/705259071766265876/b1767688faeda8b3.png")
+        await message.channel.send(embed=embed)
+
     # 수학
     if message.content == "냥이야 거듭제곱":
         await message.channel.send("주어진 수나 문자를 주어진 횟수만큼 여러 번 곱하는 연산이다냥")
@@ -229,7 +256,7 @@ async def on_message(message):
             url="https://media.discordapp.net/attachments/698830342458703912/704521854546870344/05d0fe05ff8d1061.png")
         await message.channel.send("두 수 및 두 식에 대한 크기 비교를 나타내는 식이다냥", embed=embed)
 
-    if message.content.startswith("냥이야 유리수"):
+    if message.content == "냥이야 유리수":
         embed = discord.Embed(description="유리수는 다음과 같이 정의할 수 있다냥", color=0x00D8FF)
         embed.set_image(
             url="https://media.discordapp.net/attachments/698830342458703912/704580507735818290/87c4ec8b77e3523c.png")
@@ -246,50 +273,51 @@ async def on_message(message):
     if message.content == "냥이야 계수":
         await message.channel.send("변수에 일정하게 곱해진 상수이다냥")
 
-    if message.content.startswith("냥이야 단항식"):
-        await message.channel.send("항 1개로 이루어진 식이다냥")
+    if message.content == "냥이야 단항식":
+        await message.channel.send("하나의 항만으로 이루어진 다항식이다냥")
 
-    if message.content.startswith("냥이야 다항식"):
-        await message.channel.send("항 2개 이상으로 이루어진 식이다냥")
+    if message.content == "냥이야 다항식":
+        await message.channel.send("단항식들의 덧셈과 뺄셈으로 이루어진 식이다냥")
 
-    if message.content.startswith("냥이야 차수"):
-        await message.channel.send("항에 문자가 곱해진 횟수다냥")
-        await message.channel.send("다항식에서는 가장 높은 최고차수가 그 식의 차수가 된다냥")
+    if message.content == "냥이야 차수":
+        await message.channel.send("다항식을 어떤 문자에 대해 정리했을 때, 그 문자의 가장 큰 거듭제곱 지수를 그 다항식의 차수라고 한다냥")
 
     if message.content == "냥이야 등식":
-        await message.channel.send("등호(=)의 양쪽이 서로 같음을 나타내는 식이다냥")
-        await message.channel.send("등호를 기준으로 왼쪽을 좌변, 오른쪽을 우변이라 하고, 이 둘을 통틀어 양변이라 한다냥")
+        await message.channel.send("등호 '='를 이용해 둘 이상의 식이 동일한 수학적 대상임을 나타내는 관계식이다냥")
 
-    if message.content.startswith("냥이야 방정식"):
-        await message.channel.send("미지수에 따라 참이 되기도 하고 거짓이 되기도 하는 등식이다냥")
-        await message.channel.send("방정식을 참으로 만드는 미지수를 그 방정식의 근 또는 해 라고 한다냥")
+    if message.content == "냥이야 방정식":
+        await message.channel.send("미지수가 포함된 식에서, 그 미지수에 특정한 값을 주었을 때만 성립하는 등식이다냥")
+        await message.channel.send("방정식을 참으로 만드는 미지수의 값을 그 방정식의 근 또는 해 라고 한다냥")
 
-    if message.content.startswith("냥이야 항등식"):
-        await message.channel.send("미지수에 어떤 수를 대입해도 참이 되는 등식이다냥")
-
-    if message.content.startswith("냥이야 등식의 성질"):
+    if message.content == "냥이야 항등식":
         embed = discord.Embed(color=0x00D8FF)
-        embed.set_image(
-            url="https://media.discordapp.net/attachments/698830342458703912/699981792194592798/954799c69d5129d5.png")
-        await message.channel.send("등식의 성질이다냥", embed=embed)
+        embed.add_field(name="1.", value="등식 내부의 특정한 변수가 복소수의 범위에서 어떤 값으로 변하든 항상 참을 만족하는 등식", inline=False)
+        embed.add_field(name="2.", value="등식의 양변에서 특정한 문자의  차수에 따른 문자들의 계수가 각각 모두 같은 등식", inline=False)
+        await message.channel.send("두가지의 정의가 있다냥", embed=embed)
 
-    if message.content.startswith("냥이야 이항"):
-        await message.channel.send("항의 부호를 바꾸어 반대쪽 변으로 항을 이동시키는 것이다냥")
+    if message.content == "냥이야 부정방정식":
+        await message.channel.send("항등식은 아니지만 해의 개수가 무한히 많은 방정식이다냥")
+
+    if message.content == "냥이야 등식의 성질":
+        await message.channel.send("등식의 양변에 같은 수를 더하거나, 빼거나, 곱하거나, 또는 0이 아닌 같은 수로 나누어도 그 등식은 성립한다는 성질이다냥")
+
+    if message.content == "냥이야 이항":
+        await message.channel.send("등식 또는 부등식의 한 변에 있는 항을 그 부호를 바꿔 다른 변으로 옮기는 것이다냥")
 
     if message.content == "냥이야 좌표":
-        await message.channel.send("수직선 또는 좌표평면 위의 한 점에 대응하는 수 또는 순서쌍이다냥")
+        await message.channel.send("유클리드 공간에서 점이나 다른 요소를 고유하기 결정하기 위해 사용하는 하나 이상의 숫자이다냥")
 
-    if message.content.startswith("냥이야 사분면"):
+    if message.content == "냥이야 사분면":
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(
             url="https://media.discordapp.net/attachments/698830342458703912/699982808415731752/ca90b9bb665cac64.png")
-        await message.channel.send("좌표평면이 좌표축으로 나누어진 네 개의 영역이다냥", embed=embed)
+        await message.channel.send("x축, y축으로 나뉜 좌표평면의 네 부분이다냥", embed=embed)
 
-    if message.content.startswith("냥이야 정비례"):
-        await message.channel.send("두 변수 x와 y에 대해 x가 2배, 3배, 4배, ...로 변함에 따라 y도 2배, 3배, 4배, ...로 변하는 관계를 말한다냥")
+    if message.content == "냥이야 정비례":
+        await message.channel.send("변수 x, y와, 0이 아닌 상수 k에 대해 y = kx를 만족하는 관계")
 
-    if message.content.startswith("냥이야 반비례"):
-        await message.channel.send("두 변수 x와 y에 대해 x가 2배, 3배, 4배, ...로 변함에 따라 y가 1/2배, 1/3배, 1/4배, ...로 변하는 관계를 말한다냥")
+    if message.content == "냥이야 반비례":
+        await message.channel.send("변수 x, y와, 0이 아닌 상수 k에 대해 y = k/x를 만족하는 관계")
 
     if message.content == "냥이야 점":
         embed = discord.Embed(title="유클리드의 원론(Στοιχεῖα)에 따르면", color=0x00D8FF)
@@ -298,64 +326,63 @@ async def on_message(message):
         await message.channel.send("크기(부피나 넓이 혹은 길이)가 없고 위치만 있는 도형이다냥", embed=embed)
 
     if message.content == "냥이야 선":
-        await message.channel.send("점들이 연속적으로 움직인 자리를 말한다냥")
+        await message.channel.send("점이 움직여 이루어진 자취이다냥")
 
     if message.content == "냥이야 면":
-        await message.channel.send("선들이 연속적으로 움직인 자리를 말한다냥")
+        await message.channel.send("다면체를 이루는 평면을 말한다냥")
 
-    if message.content.startswith("냥이야 교점"):
+    if message.content == "냥이야 교점":
         await message.channel.send("선과 선 또는 면과 선이 만나서 생기는 점이다냥")
 
-    if message.content.startswith("냥이야 교선"):
+    if message.content == "냥이야 교선":
         await message.channel.send("면과 면이 만나서 생기는 선이다냥")
 
-    if message.content.startswith("냥이야 직선"):
+    if message.content == "냥이야 직선":
         embed = discord.Embed(title="유클리드의 원론(Στοιχεῖα)에 따르면", color=0x00D8FF)
         embed.add_field(name="직선에 대한 공리", value="점이 서로 반대인 두 방향으로 휘지 않고 무한히 뻗어나가는 1차원 도형으로 해석된다", inline=False)
         embed.set_image(url="https://media.discordapp.net/attachments/698830342458703912/699579922745655356"
                             "/2987fd047a61ccfd.png")
         await message.channel.send("곧게 뻗은 선을 추상화한 개념이다냥", embed=embed)
 
-    if message.content.startswith("냥이야 반직선"):
+    if message.content == "냥이야 반직선":
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(
             url="https://media.discordapp.net/attachments/698830342458703912/699579918563934208/f8cb6a601e9905d8.png")
         await message.channel.send("점 하나에서 시작하여 한 방향으로 무한히 뻗어나가는 선이다냥", embed=embed)
 
-    if message.content.startswith("냥이야 선분"):
+    if message.content == "냥이야 선분":
         embed = discord.Embed(color=0x00D8FF)
         embed.set_image(
             url="https://media.discordapp.net/attachments/698830342458703912/699579920757817364/d609c097c16f1200.png")
         await message.channel.send("양쪽에 끝나는 점이 있는, 직선의 부분이다냥", embed=embed)
 
-    if message.content.startswith("냥이야 중점"):
-        await message.channel.send("주어진 선분을 같은 길이로 나누는 점을 일컫는다")
+    if message.content == "냥이야 중점":
+        await message.channel.send("주어진 선분을 같은 길이로 나누는 점을 일컫는다냥")
 
     if message.content == "냥이야 각":
-        await message.channel.send("반직선과 반직선과 맞붙었을 때 꼭짓점 안팎에서 생기는 공간이다냥, 그리고 그것의 크기를 각도라 한다냥. 기호 ∠를 사용하여 나타내고, "
-                                   "주로 θ(세타)로 표기한다냥")
+        await message.channel.send("같은 끝점을 갖는 두 반직선이 이루는 도형이다냥")
+        await message.channel.send("기호 ∠를 사용해서 나타내고, 보통 임의의 각을 ∠θ로 표현한다냥")
 
-    if message.content.startswith("냥이야 각도"):
-        await message.channel.send("반직선과 반직선과 맞붙었을 때 꼭짓점 안팎에서 생기는 공간이다냥, 그리고 그것의 크기를 각도라 한다냥. 기호 ∠를 사용하여 나타내고, "
-                                   "주로 θ(세타)로 표기한다냥")
+    if message.content == "냥이야 각도":
+        await message.channel.send("각의 두 변이 벌어진 정도를 나타내는 양을 말한다냥")
 
-    if message.content.startswith("냥이야 맞꼭지각"):
-        await message.channel.send("교차하는 두 직선이 한 점에서 만날 때 생기는 4개의 각 중 서로 이웃하지 않는 각을 말한다냥")
+    if message.content == "냥이야 맞꼭지각":
+        await message.channel.send("교차하는 두 직선이 한 점에서 만날 때 생기는 한 쌍의 교각 중 서로 이웃하지 않는 것이다냥")
 
-    if message.content.startswith("냥이야 동위각"):
+    if message.content == "냥이야 동위각":
         await message.channel.send("두 직선이 다른 한 직선과 만날 때 각 직선의 같은 쪽에서 이루는 각이다냥")
 
-    if message.content.startswith("냥이야 엇각"):
+    if message.content == "냥이야 엇각":
         await message.channel.send("서로 다른 두 직선이 다른 한 직선과 만날 때 생기는 각 중에 두 직선 사이에 마주보고 있는 각에서 두 직선과 만나는 한 직선을 상대로 서로 "
                                    "반대편에 존재하는 각을 말한다냥")
 
-    if message.content.startswith("냥이야 직교"):
+    if message.content == "냥이야 직교":
         await message.channel.send("두 개의 직선(또는 반직선 또는 선분)이 만나 이루는 각이 직각일 때, 두 직선이 직교한다고 한다냥. 기호 ⊥를 사용하여 나타낸다냥. ⊥ㅎㅎ")
 
     if message.content == "냥이야 수선":
         await message.channel.send("두 개의 직선(또는 반직선 또는 선분)이 직교할 때, 한 직선을 다른 직선의 수선이라고 한다냥")
 
-    if message.content.startswith("냥이야 수선의 발"):
+    if message.content == "냥이야 수선의 발":
         await message.channel.send("직선 위에 있지 않은 점을 지나는 직선이 먼저의 직선과 직교할 때 생기는 교점이다냥")
 
 
