@@ -414,11 +414,8 @@ async def on_message(message):
     if message.content == "냥이야 정다각형":
         await message.channel.send("모든 각의 크기가 같고 모든 변의 길이도 같은 다각형이다냥")
 
-    if message.content == "냥이야":
-        await message.channel.send("")
-
-    if message.content == "냥이야":
-        await message.channel.send("")
+    if message.content == "냥이야 테스트":
+        await message.channel.send("테스트1")
 
 
 access_token = os.environ["BOT_TOKEN"]
