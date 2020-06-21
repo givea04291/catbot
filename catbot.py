@@ -3,7 +3,7 @@ import os
 
 from discord import Client
 
-client: Client = discord.Client()
+client = discord.Client()
 prefix = "냥"
 
 
@@ -16,11 +16,11 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    if message.content == "냥이야":
-        await message.channel.send("")
+    if message.content.endswith(f'{prefix} 안녕'):
+        await message.channel.send('그래 안녕')
 
-    if message.content == "f'{prefix}안녕'":
-        await message.channel.send("반가워")
+    if message.content.endswith(f'{prefix} 안녕하세요'):
+        await message.channel.send('그래 안녕허허허')
 
 
 access_token = os.environ["BOT_TOKEN"]
