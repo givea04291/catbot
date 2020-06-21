@@ -16,8 +16,8 @@ async def on_ready():
 async def on_message(message):
     # 수학
     if message.content.endswith(f'{prefix} 가감'):
-        await message.channel.send('(1) 더하거나 뺴는 일. 또는 그렇게 하여 알맞게 맞추는 일.')
-        await message.channel.send('(2) 덧셈과 뺄셈을 아울러 이르는 말.')
+        await message.channel.send('**(1)** 더하거나 뺴는 일. 또는 그렇게 하여 알맞게 맞추는 일.')
+        await message.channel.send('**(2)** 덧셈과 뺄셈을 아울러 이르는 말.')
 
     if message.content.endswith(f'{prefix} 가감법'):
         await message.channel.send('(1) 덧셈과 뺄셈을 하는 방법.')
