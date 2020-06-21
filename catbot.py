@@ -1,10 +1,8 @@
 import discord
 import os
 
-from discord import Client
-
 client = discord.Client()
-prefix = "냥"
+prefix = "냥이야"
 
 
 @client.event
@@ -20,7 +18,7 @@ async def on_message(message):
         await message.channel.send('그래 안녕')
 
     if message.content.endswith(f'{prefix} 안녕하세요'):
-        await message.channel.send('그래 안녕허허허')
+        await message.channel.send('그래 안녕허허허°')
 
 
 access_token = os.environ["BOT_TOKEN"]
