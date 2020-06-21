@@ -3,6 +3,10 @@ import os
 
 client = discord.Client()
 prefix = "냥이야"
+suf1 = "이다냥"
+suf2 = "다냥"
+suf3 = "을 말한다냥"
+suf4 = "를 말한다냥"
 
 
 @client.event
@@ -16,8 +20,8 @@ async def on_ready():
 async def on_message(message):
     # 수학
     if message.content.endswith(f'{prefix} 가감'):
-        await message.channel.send('**(1)** 더하거나 뺴는 일, 또는 그렇게 하여 알맞게 맞추는 일이다냥')
-        await message.channel.send('**(2)** 덧셈과 뺄셈을 아울러 이르는 말이다냥')
+        await message.channel.send('**(1)** 더하거나 뺴는 일, 또는 그렇게 하여 알맞게 맞추는 일'f'{suf1}')
+        await message.channel.send('**(2)** 덧셈과 뺄셈을 아울러 이르는 말'f'{suf1}')
 
     if message.content.endswith(f'{prefix} 가감법'):
         await message.channel.send('**(1)** 덧셈과 뺄셈을 하는 방법.')
@@ -94,7 +98,43 @@ async def on_message(message):
 
     if message.content.endswith(f'{prefix} 가수'):
         await message.channel.send('**(1)** 어떤 수나 식에 다른 수나 식을 더할 때에, 더해지는 수나 식.')
-        await message.channel.send('**(2)** 상용로그의 값에서 0과 같거나 0보다 크고 1보다 작은 소수.'f'{prefix}')
+        await message.channel.send('**(2)** 상용로그의 값에서 0과 같거나 0보다 크고 1보다 작은 소수.')
+
+    if message.content.endswith(f'{prefix} 가수부'):
+        await message.channel.send('상용로그값의 가수 부분.')
+
+    if message.content.endswith(f'{prefix} 가약'):
+        await message.channel.send('약분할 수 있음.')
+
+    if message.content.endswith(f'{prefix} 가약분수'):
+        await message.channel.send('약분할 수 있는 분수.')
+
+    if message.content.endswith(f'{prefix} 가약분수식'):
+        await message.channel.send('약분할 수 있는 분수식.')
+
+    if message.content.endswith(f'{prefix} 가역행렬'):
+        await message.channel.send('역행렬을 갖는 행렬. 행렬식의 값이 0이 아닌 행렬이다.')
+
+    if message.content.endswith(f'{prefix} '):
+        await message.channel.send('')
+
+    if message.content.endswith(f'{prefix} '):
+        await message.channel.send('')
+
+    if message.content.endswith(f'{prefix} '):
+        await message.channel.send('')
+
+    if message.content.endswith(f'{prefix} '):
+        await message.channel.send('')
+
+    if message.content.endswith(f'{prefix} '):
+        await message.channel.send('')
+
+    if message.content.endswith(f'{prefix} '):
+        await message.channel.send('')
+
+    if message.content.endswith(f'{prefix} '):
+        await message.channel.send('')
 
     if message.content.endswith(f'{prefix} '):
         await message.channel.send('')
