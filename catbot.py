@@ -1,6 +1,5 @@
 import discord
 import os
-import openpyxl
 
 client = discord.Client()
 prefix = "냥이야 "
@@ -27,10 +26,9 @@ async def on_ready():
 @client.event
 async def on_message(message):
     # ------------------------------ 기억 ------------------------------
-    if message.content.endswith(f'{prefix}가감'):
+    if message.content.endswith(f'{prefix}테스트'):
         await message.channel.send('**(1)** 더하거나 뺴는 일, 또는 그렇게 하여 알맞게 맞추는 일'f'{suffix}')
         await message.channel.send('**(2)** 덧셈과 뺄셈을 아울러 이르는 말'f'{suffix}')
-
 
     # ------------------------------ 수학 ------------------------------
     if message.content.endswith(f'{prefix}가감'):
@@ -279,14 +277,6 @@ async def on_message(message):
 
     if message.content.endswith(f'{prefix}'):
         await message.channel.send(''f'{suffix}')
-
-
-@client.event
-async def on_message(message):
-    # ------------------------------ 기억 ------------------------------
-    if message.content.endswith(f'{prefix}실험'):
-        await message.channel.send('**(1)** 더하거나 뺴는 일, 또는 그렇게 하여 알맞게 맞추는 일'f'{suffix}')
-        await message.channel.send('**(2)** 덧셈과 뺄셈을 아울러 이르는 말'f'{suffix}')
 
 
 access_token = os.environ["BOT_TOKEN"]
