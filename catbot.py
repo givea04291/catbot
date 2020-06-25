@@ -31,25 +31,25 @@ async def on_message(message):
     # ------------------------------ 필터 ------------------------------
 
     if message.content.startswith(f'{prefix}씨발'):
-        await message.channel.send('라먹어 ㅎㅎ'f'{suffix}')
+        await message.channel.send('라먹어 ㅎㅎ')
 
     if message.content.endswith(f'{prefix}시발'):
-        await message.channel.send('[명] 맨 처음 떠나는 것'f'{suffix}')
+        await message.channel.send('[명] 맨 처음 떠나는 것')
 
     if message.content.startswith(f'{prefix}개새끼'):
-        await message.channel.send('내가 개로 보여? ㅋ'f'{suffix}')
+        await message.channel.send('내가 개로 보여? ㅋ')
 
     if message.content.startswith(f'{prefix}섹스'):
-        await message.channel.send('너가 못하는거?'f'{suffix}')
+        await message.channel.send('너가 못하는거?')
 
     if message.content.startswith(f'{prefix}벌려'):
-        await message.channel.send('넣을게 없잖아...'f'{suffix}')
+        await message.channel.send('넣을게 없잖아...')
 
     if message.content.startswith(f'{prefix}좆까'):
-        await message.channel.send('넌 깔 것마저 없잖아'f'{suffix}')
+        await message.channel.send('넌 깔 것마저 없잖아')
 
     if message.content.startswith(f'{prefix}애미'):
-        await message.channel.send('있거든!'f'{suffix}')
+        await message.channel.send('있거든!')
 
     # ------------------------------ !필터 ------------------------------
 
