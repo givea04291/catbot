@@ -1,8 +1,11 @@
 import discord
 import os
+import datetime
+
 
 client = discord.Client()
-prefix = "냥이야 "
+prefix = "냥이야 정의 "
+prefix2 = "냥이야 "
 
 suffix = "이다냥"
 suffix2 = "을 말한다냥"
@@ -25,12 +28,24 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    # 시간
+    if message.content.endswith('냥이야 시간'):
+        year = datetime.datetime.today().year
+        month = datetime.datetime.today().month
+        day = datetime.datetime.today().day
+        hour = datetime.datetime.today().hour
+        minute = datetime.datetime.today().minute
+        second = datetime.datetime.today().second
+        await message.channel.send('현재 시각은 ' + str(year) + '년 ' + str(month) + '월 ' + str(day) + '일 '
+                                   + str(hour) + '시 ' + str(minute) + '분 ' + str(second) + '초 입니다')
+    # !시간
+
     # ------------------------------ 기억 ------------------------------
-    if message.content.endswith(f'{prefix}테스트'):
-        await message.channel.send('**(1)** 더하거나 뺴는 일, 또는 그렇게 하여 알맞게 맞추는 일'f'{suffix}')
-        await message.channel.send('**(2)** 덧셈과 뺄셈을 아울러 이르는 말'f'{suffix}')
+
+    # ------------------------------ !기억 ------------------------------
 
     # ------------------------------ 수학 ------------------------------
+
     if message.content.endswith(f'{prefix}가감'):
         await message.channel.send('**(1)** 더하거나 뺴는 일, 또는 그렇게 하여 알맞게 맞추는 일'f'{suffix}')
         await message.channel.send('**(2)** 덧셈과 뺄셈을 아울러 이르는 말'f'{suffix}')
@@ -242,41 +257,16 @@ async def on_message(message):
     if message.content.endswith(f'{prefix}감소수열'):
         await message.channel.send('수열 *a1, a2, a3*, ……에서 항의 값이 점점 작아지는 수열. 항의 값이 커지지 않는 수열을 포함해서 이를 때도 있다'f'{suffix4}')
 
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
+    if message.content.endswith(f'{prefix}감소함수'):
+        await message.channel.send('독립 변수의 값이 커질수록 이에 대응하는 함숫값이 작아지는 함수'f'{suffix}')
+
+    if message.content.endswith(f'{prefix}값'):
+        await message.channel.send('하나의 글자나 식이 취하는 수, 또는 그런 수치'f'{suffix3}')
 
     if message.content.endswith(f'{prefix}'):
         await message.channel.send(''f'{suffix}')
 
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
-
-    if message.content.endswith(f'{prefix}'):
-        await message.channel.send(''f'{suffix}')
+    # ------------------------------ !수학 ------------------------------
 
 
 access_token = os.environ["BOT_TOKEN"]
