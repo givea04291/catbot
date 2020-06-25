@@ -28,17 +28,44 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    # 시간
-    if message.content.endswith('냥이야 시간'):
+    # ------------------------------ 필터 ------------------------------
+
+    if message.content.startswith(f'{prefix}씨발'):
+        await message.channel.send('라먹어 ㅎㅎ'f'{suffix}')
+
+    if message.content.endswith(f'{prefix}시발'):
+        await message.channel.send('[명] 맨 처음 떠나는 것'f'{suffix}')
+
+    if message.content.startswith(f'{prefix}개새끼'):
+        await message.channel.send('내가 개로 보여? ㅋ'f'{suffix}')
+
+    if message.content.startswith(f'{prefix}섹스'):
+        await message.channel.send('너가 못하는거?'f'{suffix}')
+
+    if message.content.startswith(f'{prefix}벌려'):
+        await message.channel.send('넣을게 없잖아...'f'{suffix}')
+
+    if message.content.startswith(f'{prefix}좆까'):
+        await message.channel.send('넌 깔 것마저 없잖아'f'{suffix}')
+
+    if message.content.startswith(f'{prefix}애미'):
+        await message.channel.send('있거든!'f'{suffix}')
+
+    # ------------------------------ !필터 ------------------------------
+
+    # ------------------------------ 시간 ------------------------------
+
+    if message.content.endswith(f'{prefix2}시간'):
         year = datetime.datetime.today().year
         month = datetime.datetime.today().month
         day = datetime.datetime.today().day
         hour = datetime.datetime.today().hour
         minute = datetime.datetime.today().minute
         second = datetime.datetime.today().second
-        await message.channel.send('현재 시각은 ' + str(year) + '년 ' + str(month) + '월 ' + str(day) + '일 '
-                                   + str(hour) + '시 ' + str(minute) + '분 ' + str(second) + '초 입니다')
-    # !시간
+        await message.channel.send('지금은 ' + str(year) + '년 ' + str(month) + '월 ' + str(day) + '일 '
+                                   + str(hour) + '시 ' + str(minute) + '분 ' + str(second) + '초 이다냥')
+
+    # ------------------------------ !시간 ------------------------------
 
     # ------------------------------ 기억 ------------------------------
 
