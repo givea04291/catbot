@@ -1,17 +1,16 @@
 import discord
+from discord.ext import commands
 
-client = discord.Client()
+client = discord.Bot(command_prefix="냥이야 ")
 
 
 @client.event
 async def on_ready():
     print("ready")
 
-
-@client.event
-async def on_message(message):
-    if message.content.startswith("냥이야"):
-        await message.channel.send('냥?')
+@client.command()
+async def 안녕(ctx):
+    await ctx.send("nice to meet you")
 
 
 client.run(os.environ["BOT_TOKEN"])
