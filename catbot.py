@@ -14,5 +14,4 @@ async def on_message(message):
         await message.channel.send('냥?')
 
 
-access_token = os.environ["BOT_TOKEN"]
-client.run(access_token)
+client.run(os.environ["BOT_TOKEN"])
