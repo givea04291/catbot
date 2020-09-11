@@ -1,15 +1,16 @@
 import discord
+from discord.ext import commands
+import os
 
-client = discord.Client()
+bot = commands.Bot(command_prefix='냥이야')
 
-@client.event
+@bot.event
 async def on_ready():
-    print("ready")
+    print('complete')
+    print('------')
 
-@client.event
-async def on_message(message):
-    if message.content.startswith("냥이야"):
-        await message.channel.send('냥?')
+@bot.command()
+async def ping(ctx):
+    await ctx.send('pong')
 
-
-client.run(os.environ["BOT_TOKEN"])
+bot.run(os.environ["BOT_TOKEN"])
