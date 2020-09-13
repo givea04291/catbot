@@ -16,7 +16,14 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
-    
+
+    # 목록
+
+    if message.content.endswith('냥이야 목록'):
+        await message.channel.send('아직 안만들었다냥 ㅇㅅㅇ')
+
+    # !목록
+
     # 랜덤
 
     if message.content.startswith('냥이야 주사위'):
@@ -24,7 +31,7 @@ async def on_message(message):
         rolld = roll[2]
         dice = random.randint(1, int(rolld))
         await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 ' + str(dice) + '이(가) 나왔다냥')
-
+  
     if message.content.startswith('냥이야 골라'):
         choice = message.content.split(" ")
         choicenumber = random.randint(2, len(choice)-1)
@@ -101,5 +108,52 @@ async def on_message(message):
         await message.channel.send(str(second) + '초... ' + str(second+1) + '초.. 지나가버렸다냥')
     
     # !시간
+
+    # 대화
+
+    if message.content.endswith('냥이야'):
+        say = "왜부르냥?/냥?/무슨일로 날 불렀냥?"
+        saychoice = say.split("/")
+        saynumber = random.randint(1, 3)
+        sayresult = saychoice[saynumber - 1]
+        await message.channel.send(sayresult + '\n할말이 있다면 `냥이야 <할말>`로 말해달라냥')
+
+    if message.content.endswith('냥이야 할말'):
+        say = "너 바보냥?/어... 이걸 진짜로 쓸줄은 몰랐다냥/역시 인간들이란.."
+        saychoice = say.split("/")
+        saynumber = random.randint(1, 3)
+        sayresult = saychoice[saynumber - 1]
+        await message.channel.send(sayresult + '\n무슨 말을 해야할지 모르겠다면 `냥이야 목록`을 입력해라냥')
+
+    if message.content.endswith('냥이야 <할말>'):
+        say = "너 바보냥?/어... 이걸 진짜로 쓸줄은 몰랐다냥/역시 인간들이란.."
+        saychoice = say.split("/")
+        saynumber = random.randint(1, 3)
+        sayresult = saychoice[saynumber - 1]
+        await message.channel.send(sayresult + '\n무슨 말을 해야할지 모르겠다면 `냥이야 목록`을 입력해라냥')
+
+    # !대화
+
+    # 프로필
+
+    if message.content.endswith('냥이야 프로필'):
+        await message.channel.send('프로필을 보고싶으면 `냥이야 프로필 <이름>`을 적으라냥')
+
+    if message.content.endswith('냥이야 프로필 종현'):
+        embed=discord.Embed(title='차종현', description='[전사] Lv. 26', color=0x00D8FF)
+        embed.set_thumbnail(url='https://post-phinf.pstatic.net/MjAxOTA2MjNfMTU4/MDAxNTYxMjYwNjMyNjUz.X1PHx3OkfkjK6coMGIjWgzdOx5yL_IS9HbjU_QnIGMMg.xhWi8ousZ3-gro3TvBmURsum0JGGHjmcOaBo-3PgLMsg.JPEG/1.jpg?type=w1200')
+        embed.add_field(name='체력', value=':heart: 108', inline=True)
+        embed.add_field(name='마나', value=':star2: 16', inline=True)
+        embed.add_field(name='물리공격력', value=':dagger: 83', inline=True)
+        embed.add_field(name='마법공격력', value=':dizzy: 35', inline=True)
+        embed.add_field(name='힘', value=':muscle: 97', inline=True)
+        embed.add_field(name='방어력', value=':shield: 74', inline=True)
+        embed.add_field(name='지능', value=':books: 100000', inline=True)
+        embed.add_field(name='민첩함', value=':athletic_shoe: 43', inline=True)
+        embed.add_field(name='특성', value=':video_game: 뭐든 고였다. 피하는게 상책.', inline=False)
+        await message.channel.send(embed=embed)
+
+    # !프로필
+
 
 client.run(os.environ["BOT_TOKEN"])
