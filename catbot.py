@@ -137,7 +137,8 @@ async def on_message(message):
     # 프로필
 
     if message.content.endswith('냥이야 프로필'):
-        await message.channel.send('프로필을 보고싶으면 `냥이야 프로필 <이름>`을 적으라냥')
+        await message.channel.send('프로필을 보고싶으면 `냥이야 프로필 <이름>`을 적고,\n'
+                                    '프로필을 볼 수 있는 사람을 알고 싶으면 `냥이야 목록 프로필`을 적으라냥')
 
     if message.content.endswith('냥이야 프로필 종현'):
         embed=discord.Embed(title='차종현', description='[전사] Lv. 26', color=0x00D8FF)
@@ -154,6 +155,16 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
     # !프로필
+
+    # 기타
+    
+    if message.content.startswith('냥이야 마피아 역할'):
+        l = ['마피아', '마피아', '스파이', '군인', '경찰', '의사', '테러리스트', '시민', '시민', '시민']
+        random.shuffle(l)
+        a = message.content.split(" ")
+        await message.channel.send('```\n'+str(a[3]) + ' : ' + str(l[0])+'\n'+str(a[4]) + ' : ' + str(l[1])+'\n'+str(a[5]) + ' : ' + str(l[2])+'\n'+str(a[6]) + ' : ' + str(l[3])+'\n'+str(a[7]) + ' : ' + str(l[4])+'\n'+str(a[8]) + ' : ' + str(l[5])+'\n'+str(a[9]) + ' : ' + str(l[6])+'\n'+str(a[10]) + ' : ' + str(l[7])+'\n'+str(a[11]) + ' : ' + str(l[8])+'\n'+str(a[12]) + ' : ' + str(l[9])+'\n```')
+    
+    # !기타
 
 
 client.run(os.environ["BOT_TOKEN"])
