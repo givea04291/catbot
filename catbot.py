@@ -22,6 +22,9 @@ async def on_message(message):
     if message.content.endswith('냥이야 목록'):
         await message.channel.send('아직 안만들었다냥 ㅇㅅㅇ')
 
+    if message.content.endswith('냥이야 목록 프로필'):
+        await message.channel.send('아직 안만들었다냥 ㅇㅅㅇ')
+
     # !목록
 
     # 랜덤
@@ -157,7 +160,18 @@ async def on_message(message):
     # !프로필
 
     # 기타
-    
+
+    if message.content.endswith('냥이야 그래프'):
+        await message.channel.send('그래프를 보려면 `냥이야 그래프 <그래프 수식>`을 적으라냥')
+
+    if message.content.startswith('냥이야 그래프'):
+        s = message.content.split(" ")
+        f = s[2]
+        if str(f[0:2])=='y=':
+            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q='+f)
+        else:
+            await message.channel.send('그래프 수식은 `y=(x에 대한 다항식)`으로 써야한다냥\n평면상의 함수만 그래프로 나타낼 수 있다냥')
+             
     if message.content.startswith('냥이야 마피아 역할'):
         l = ['마피아', '마피아', '스파이', '군인', '경찰', '의사', '테러리스트', '시민', '시민', '시민']
         random.shuffle(l)
