@@ -168,16 +168,35 @@ async def on_message(message):
         s = message.content.split(" ")
         f = s[2]
         if str(f[0:2])=='y=':
-            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q='+f)
+            g = message.content.split("y=")
+            c = g[1]
+            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=y='+str(c))
+        elif str(f[0:5])=='f(x)=':            
+            a = message.content.split("f(x)=")
+            b = a[1]
+            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=f(x)='+str(b))
+        elif str(f)=='도움말':
+            embed=discord.Embed(title='그래프 명령어 도움말', color=0xABF200)
+            embed.add_field(name='형식', value='`y=(x에 대한 다항식)`으로 쓰기', inline=False)
+            embed.add_field(name='공백', value='공백 자리는 `+` 쓰기', inline=False)
+            embed.add_field(name='+', value='+ 대신 `%2B` 쓰기', inline=False)
+            embed.add_field(name='모바일', value='모바일로는 그래프 볼 수 없음', inline=False)
+            await message.channel.send(embed=embed)
         else:
-            await message.channel.send('그래프 수식은 `y=(x에 대한 다항식)`으로 써야한다냥\n평면상의 함수만 그래프로 나타낼 수 있다냥')
-             
+            await message.channel.send('그래프 명령어를 잘 모르겠다면 `냥이야 그래프 도움말`을 입력해라냥')
+                 
     if message.content.startswith('냥이야 마피아 역할'):
         l = ['마피아', '마피아', '스파이', '군인', '경찰', '의사', '테러리스트', '시민', '시민', '시민']
         random.shuffle(l)
         a = message.content.split(" ")
-        await message.channel.send('```\n'+str(a[3]) + ' : ' + str(l[0])+'\n'+str(a[4]) + ' : ' + str(l[1])+'\n'+str(a[5]) + ' : ' + str(l[2])+'\n'+str(a[6]) + ' : ' + str(l[3])+'\n'+str(a[7]) + ' : ' + str(l[4])+'\n'+str(a[8]) + ' : ' + str(l[5])+'\n'+str(a[9]) + ' : ' + str(l[6])+'\n'+str(a[10]) + ' : ' + str(l[7])+'\n'+str(a[11]) + ' : ' + str(l[8])+'\n'+str(a[12]) + ' : ' + str(l[9])+'\n```')
+        await message.channel.send('```\n'+str(a[3]) + ' : ' + str(l[0])+'\n'+str(a[4]) + ' : ' + str(l[1])+'\n'+str(a[5]) + ' : ' + str(l[2])+'\n'+str(a[6]) + ' : ' + str(l[3])+'\n'+str(a[7]) + ' : ' + str(l[4])+'\n'+str(a[8]) + ' : ' + str(l[5])+'\n'+str(a[9]) + ' : ' + str(l[6])+'\n'+str(a[10]) + ' : ' + str(l[7])+'\n'+str(a[11]) + ' : ' + str(l[8])+'\n'+str(a[12]) + ' : ' + str(l[9])+'\n```')   
     
+    if message.content.endswith('냥이야 마피아 밤'):
+        await message.channel.send('밤이 되었다냥\n모두 마이크를 끄고 사회자의 DM을 기다리라냥\n@here')
+
+    if message.content.endswith('냥이야 마피아 낮'):
+        await message.channel.send('낮이 되었다냥\n모두 마이크를 켜라냥\n@here')
+ 
     # !기타
 
 
