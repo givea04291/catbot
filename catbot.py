@@ -186,7 +186,7 @@ async def on_message(message):
             await message.channel.send('그래프 명령어를 잘 모르겠다면 `냥이야 그래프 도움말`을 입력해라냥')
                  
     if message.content.startswith('냥이야 마피아 역할'):
-        l = ['마피아', '마피아', '스파이', '군인', '경찰', '의사', '테러리스트', '시민', '시민', '시민']
+        l = ['마피아', '마피아', '스파이', '군인', '경찰', '의사', '정치인', '사립탐정', '건달', '도굴꾼']
         random.shuffle(l)
         a = message.content.split(" ")
         await message.channel.send('```\n'+str(a[3]) + ' : ' + str(l[0])+'\n'+str(a[4]) + ' : ' + str(l[1])+'\n'+str(a[5]) + ' : ' + str(l[2])+'\n'+str(a[6]) + ' : ' + str(l[3])+'\n'+str(a[7]) + ' : ' + str(l[4])+'\n'+str(a[8]) + ' : ' + str(l[5])+'\n'+str(a[9]) + ' : ' + str(l[6])+'\n'+str(a[10]) + ' : ' + str(l[7])+'\n'+str(a[11]) + ' : ' + str(l[8])+'\n'+str(a[12]) + ' : ' + str(l[9])+'\n```')   
