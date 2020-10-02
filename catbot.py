@@ -17,17 +17,15 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-    # 목록
+# 목록
 
     if message.content.endswith('냥이야 목록'):
-        await message.channel.send('아직 안만들었다냥 ㅇㅅㅇ')
-
+        await message.channel.send('명령어 목록을 보고싶다면 `냥이야 목록 <목록이름>` 이라고 말해봐라냥')
+  
     if message.content.endswith('냥이야 목록 프로필'):
         await message.channel.send('아직 안만들었다냥 ㅇㅅㅇ')
 
-    # !목록
-
-    # 랜덤
+# 주사위
 
     if message.content.startswith('냥이야 주사위'):
         roll = message.content.split(" ")
@@ -35,11 +33,15 @@ async def on_message(message):
         dice = random.randint(1, int(rolld))
         await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 ' + str(dice) + '이(가) 나왔다냥')
   
+# 선택
+
     if message.content.startswith('냥이야 골라'):
         choice = message.content.split(" ")
         choicenumber = random.randint(2, len(choice)-1)
         choiceresult = choice[choicenumber]
         await message.channel.send(choiceresult)
+
+# 추천
 
     if message.content.endswith('냥이야 애니추천'):
         ani = "해피슈가라이프 코바야시네메이드드래곤 혈계전선 중2병이라도사랑하고싶어 데이트어라이브 지박소년하나코군 귀멸의칼날 소드아트온라인 너의이름은 목소리의형태 날씨의아이 진격의거인 늑대아이 " \
@@ -72,9 +74,7 @@ async def on_message(message):
         sayresult = saychoice[saynumber - 1]
         await message.channel.send(gameresult + sayresult)
 
-    # !랜덤
-
-    # 시간
+# 시간
 
     if message.content.endswith('냥이야 시간'):
         year = datetime.datetime.today().year
@@ -109,35 +109,17 @@ async def on_message(message):
     if message.content.startswith('냥이야 몇초'):
         second = datetime.datetime.today().second
         await message.channel.send(str(second) + '초... ' + str(second+1) + '초.. 지나가버렸다냥')
-    
-    # !시간
 
-    # 대화
+# 대화
 
     if message.content.endswith('냥이야'):
-        say = "왜부르냥?/냥?/무슨일로 날 불렀냥?"
+        say = "왜부르냥?/냥?/무슨일이냥?"
         saychoice = say.split("/")
         saynumber = random.randint(1, 3)
         sayresult = saychoice[saynumber - 1]
-        await message.channel.send(sayresult + '\n할말이 있다면 `냥이야 <할말>`로 말해달라냥')
+        await message.channel.send(sayresult)
 
-    if message.content.endswith('냥이야 할말'):
-        say = "너 바보냥?/어... 이걸 진짜로 쓸줄은 몰랐다냥/역시 인간들이란.."
-        saychoice = say.split("/")
-        saynumber = random.randint(1, 3)
-        sayresult = saychoice[saynumber - 1]
-        await message.channel.send(sayresult + '\n무슨 말을 해야할지 모르겠다면 `냥이야 목록`을 입력해라냥')
-
-    if message.content.endswith('냥이야 <할말>'):
-        say = "너 바보냥?/어... 이걸 진짜로 쓸줄은 몰랐다냥/역시 인간들이란.."
-        saychoice = say.split("/")
-        saynumber = random.randint(1, 3)
-        sayresult = saychoice[saynumber - 1]
-        await message.channel.send(sayresult + '\n무슨 말을 해야할지 모르겠다면 `냥이야 목록`을 입력해라냥')
-
-    # !대화
-
-    # 프로필
+# 프로필
 
     if message.content.endswith('냥이야 프로필'):
         await message.channel.send('프로필을 보고싶으면 `냥이야 프로필 <이름>`을 적고,\n'
@@ -157,9 +139,7 @@ async def on_message(message):
         embed.add_field(name='특성', value=':video_game: 뭐든 고였다. 피하는게 상책.', inline=False)
         await message.channel.send(embed=embed)
 
-    # !프로필
-
-    # 기타
+# 그래프
 
     if message.content.endswith('냥이야 그래프'):
         await message.channel.send('그래프를 보려면 `냥이야 그래프 <그래프 수식>`을 적으라냥')
@@ -168,36 +148,50 @@ async def on_message(message):
         s = message.content.split(" ")
         f = s[2]
         if str(f[0:2])=='y=':
-            g = message.content.split("y=")
-            c = g[1]
-            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=y='+str(c))
+            a = message.content.split("y=")
+            b = a[1]
+            b = b.replace('+', '%2B')
+            b = b.replace(' ', '+')
+            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=y='+str(b))
         elif str(f[0:5])=='f(x)=':            
             a = message.content.split("f(x)=")
             b = a[1]
+            b = b.replace('+', '%2B')
+            b = b.replace(' ', '+')
             await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=f(x)='+str(b))
         elif str(f)=='도움말':
-            embed=discord.Embed(title='그래프 명령어 도움말', color=0xABF200)
-            embed.add_field(name='형식', value='`y=(x에 대한 다항식)`으로 쓰기', inline=False)
-            embed.add_field(name='공백', value='공백 자리는 `+` 쓰기', inline=False)
-            embed.add_field(name='+', value='+ 대신 `%2B` 쓰기', inline=False)
-            embed.add_field(name='모바일', value='모바일로는 그래프 볼 수 없음', inline=False)
-            await message.channel.send(embed=embed)
+            await message.channel.send('`y=(x에 대한 다항식)` 또는 `f(x)=(x에 대한 다항식)` 모양으로 써야한다냥')
         else:
             await message.channel.send('그래프 명령어를 잘 모르겠다면 `냥이야 그래프 도움말`을 입력해라냥')
-                 
-    if message.content.startswith('냥이야 마피아 역할'):
-        l = ['마피아', '마피아', '스파이', '군인', '경찰', '의사', '정치인', '사립탐정', '건달', '도굴꾼']
-        random.shuffle(l)
-        a = message.content.split(" ")
-        await message.channel.send('```\n'+str(a[3]) + ' : ' + str(l[0])+'\n'+str(a[4]) + ' : ' + str(l[1])+'\n'+str(a[5]) + ' : ' + str(l[2])+'\n'+str(a[6]) + ' : ' + str(l[3])+'\n'+str(a[7]) + ' : ' + str(l[4])+'\n'+str(a[8]) + ' : ' + str(l[5])+'\n'+str(a[9]) + ' : ' + str(l[6])+'\n'+str(a[10]) + ' : ' + str(l[7])+'\n'+str(a[11]) + ' : ' + str(l[8])+'\n'+str(a[12]) + ' : ' + str(l[9])+'\n```')   
-    
-    if message.content.endswith('냥이야 마피아 밤'):
-        await message.channel.send('밤이 되었다냥\n모두 마이크를 끄고 사회자의 DM을 기다리라냥\n@here')
 
-    if message.content.endswith('냥이야 마피아 낮'):
-        await message.channel.send('낮이 되었다냥\n모두 마이크를 켜라냥\n@here')
- 
-    # !기타
+# 계산
+    if message.content.startswith('냥이야 계산'):
+        a = message.content.split(' ')
+        a = str(a[2])
+        a = a.replace('^', '**')
+        a = a.replace('×', '*')
+        a = a.replace('÷', '/')
+        c = a.replace('**', '^')
+        try:
+            b = a.split('**')
+            try:
+                b = int(b[1])
+                if int(b)>10:
+                    await message.channel.send('나는 계산기가 아니다냥')
+                elif int(b)<-10:
+                    await message.channel.send('나는 계산기가 아니다냥')
+                else:
+                    try:
+                        await message.channel.send('**'+c+' = '+str(eval(a))+' (이)다냥**')
+                    except NameError:
+                        await message.channel.send('이건 정상적인 식이 아닌것같다냥')
+            except ValueError:
+                await message.channel.send('지수로는 정수만 올 수 있다냥')
+        except IndexError:
+            try:
+                await message.channel.send('**'+c+' = '+str(eval(a))+' (이)다냥**')
+            except NameError:
+                await message.channel.send('이건 정상적인 식이 아닌것같다냥')
 
 
 client.run(os.environ["BOT_TOKEN"])
