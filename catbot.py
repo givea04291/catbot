@@ -27,13 +27,28 @@ async def on_message(message):
 
 # 주사위
 
+    if message.content.endswith('냥이야 주사위'):
+        embed=discord.Embed(title="'주사위' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 주사위 <면의 개수>`', inline=False)
+        embed.add_field(name='면의 개수', value='주사위 면의 개수로는 0보다 큰 정수만 가능함', inline=False)
+        await message.channel.send(embed=embed)
+
     if message.content.startswith('냥이야 주사위'):
-        roll = message.content.split(" ")
-        rolld = roll[2]
-        dice = random.randint(1, int(rolld))
-        await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 ' + str(dice) + '이(가) 나왔다냥')
-  
+        try:
+            roll = message.content.split(" ")
+            rolld = roll[2]
+            dice = random.randint(1, int(rolld))
+            await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 ' + str(dice) + '이(가) 나왔다냥')
+        except ValueError:
+            await message.channel.send('주사위 면의 개수로는 0보다 큰 정수가 와야한다냥')
+
 # 선택
+
+    if message.content.endswith('냥이야 골라'):
+        embed=discord.Embed(title="'골라' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 골라 <옵션1> [옵션2] [옵션3] …`', inline=False)
+        embed.add_field(name='옵션', value='`옵션` 자리에 공백이 오면 오류 발생', inline=False)
+        await message.channel.send(embed=embed)
 
     if message.content.startswith('냥이야 골라'):
         choice = message.content.split(" ")
@@ -122,27 +137,51 @@ async def on_message(message):
 # 프로필
 
     if message.content.endswith('냥이야 프로필'):
-        await message.channel.send('프로필을 보고싶으면 `냥이야 프로필 <이름>`을 적고,\n'
-                                    '프로필을 볼 수 있는 사람을 알고 싶으면 `냥이야 목록 프로필`을 적으라냥')
-
-    if message.content.endswith('냥이야 프로필 종현'):
-        embed=discord.Embed(title='차종현', description='[전사] Lv. 26', color=0x00D8FF)
-        embed.set_thumbnail(url='https://post-phinf.pstatic.net/MjAxOTA2MjNfMTU4/MDAxNTYxMjYwNjMyNjUz.X1PHx3OkfkjK6coMGIjWgzdOx5yL_IS9HbjU_QnIGMMg.xhWi8ousZ3-gro3TvBmURsum0JGGHjmcOaBo-3PgLMsg.JPEG/1.jpg?type=w1200')
-        embed.add_field(name='체력', value=':heart: 108', inline=True)
-        embed.add_field(name='마나', value=':star2: 16', inline=True)
-        embed.add_field(name='물리공격력', value=':dagger: 83', inline=True)
-        embed.add_field(name='마법공격력', value=':dizzy: 35', inline=True)
-        embed.add_field(name='힘', value=':muscle: 97', inline=True)
-        embed.add_field(name='방어력', value=':shield: 74', inline=True)
-        embed.add_field(name='지능', value=':books: 100000', inline=True)
-        embed.add_field(name='민첩함', value=':athletic_shoe: 43', inline=True)
-        embed.add_field(name='특성', value=':video_game: 뭐든 고였다. 피하는게 상책.', inline=False)
+        embed=discord.Embed(title="'프로필' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 프로필 <이름>`', inline=False)
+        embed.add_field(name='이름', value='실명으로 써야함', inline=False)
         await message.channel.send(embed=embed)
+
+    if message.content.startswith('냥이야 프로필 '):
+        cut = message.content.split(' ')
+        name = cut[2]
+        if name=='차종현':
+            embed=discord.Embed(title='차종현', description='[전사] Lv. 26', color=0x00D8FF)
+            embed.set_thumbnail(url='https://post-phinf.pstatic.net/MjAxOTA2MjNfMTU4/MDAxNTYxMjYwNjMyNjUz.X1PHx3OkfkjK6coMGIjWgzdOx5yL_IS9HbjU_QnIGMMg.xhWi8ousZ3-gro3TvBmURsum0JGGHjmcOaBo-3PgLMsg.JPEG/1.jpg?type=w1200')
+            embed.add_field(name='체력', value=':heart: 108', inline=True)
+            embed.add_field(name='마나', value=':star2: 16', inline=True)
+            embed.add_field(name='물리공격력', value=':dagger: 83', inline=True)
+            embed.add_field(name='마법공격력', value=':dizzy: 35', inline=True)
+            embed.add_field(name='힘', value=':muscle: 97', inline=True)
+            embed.add_field(name='방어력', value=':shield: 74', inline=True)
+            embed.add_field(name='지능', value=':books: 100000', inline=True)
+            embed.add_field(name='민첩함', value=':athletic_shoe: 43', inline=True)
+            embed.add_field(name='특성', value=':video_game: 뭐든 고였다. 피하는게 상책.', inline=False)
+            await message.channel.send(embed=embed)
+        elif name=='김규용':
+            embed=discord.Embed(title='김규용', description='[관리자] Lv. ∞', color=0x00D8FF)
+            embed.set_thumbnail(url='https://photos.google.com/album/AF1QipM0fRSQ62umhTogtcf7Z5VuecHIntIqx0233pJQ/photo/AF1QipOTkyZLRoXDjnrUj2jVSPSUCIZHBeVdS4Gxaf16')
+            embed.add_field(name='체력', value=':heart: ∞', inline=True)
+            embed.add_field(name='마나', value=':star2: ∞', inline=True)
+            embed.add_field(name='물리공격력', value=':dagger: ∞', inline=True)
+            embed.add_field(name='마법공격력', value=':dizzy: ∞', inline=True)
+            embed.add_field(name='힘', value=':muscle: ∞', inline=True)
+            embed.add_field(name='방어력', value=':shield: ∞', inline=True)
+            embed.add_field(name='지능', value=':books: ∞', inline=True)
+            embed.add_field(name='민첩함', value=':athletic_shoe: ∞', inline=True)
+            embed.add_field(name='특성', value=':infinity: 올스텟 무한', inline=False)
+            await message.channel.send(embed=embed)       
+        else:
+            await message.channel.send('아직 만들지 않았거나 없는 이름이다냥')
 
 # 그래프
 
     if message.content.endswith('냥이야 그래프'):
-        await message.channel.send('그래프를 보려면 `냥이야 그래프 <그래프 수식>`을 적으라냥')
+        embed=discord.Embed(title="'그래프' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 그래프 <수식>`', inline=False)
+        embed.add_field(name='수식', value='`y=(x에 대한 다항식)` 또는 f(x)=(x에 대한 다항식)의 형태로 써야함', inline=False)
+        embed.add_field(name='띄어쓰기', value='수식에 들어간 공백은 인식 불가능', inline=False)
+        await message.channel.send(embed=embed)
 
     if message.content.startswith('냥이야 그래프'):
         s = message.content.split(" ")
@@ -165,33 +204,73 @@ async def on_message(message):
             await message.channel.send('그래프 명령어를 잘 모르겠다면 `냥이야 그래프 도움말`을 입력해라냥')
 
 # 계산
+
+    if message.content.endswith('냥이야 계산'):
+        embed=discord.Embed(title="'계산' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 계산 <식>`', inline=False)
+        embed.add_field(name='더하기/빼기', value='`+` 및 `-` 로 사용 가능', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `x`, `·` 로 사용 가능', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능\n거듭제곱의 지수는 `{ }` 안에 써야함', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        await message.channel.send(embed=embed)
+
     if message.content.startswith('냥이야 계산'):
         a = message.content.split(' ')
-        a = str(a[2])
+        a = a[2]
         a = a.replace('^', '**')
         a = a.replace('×', '*')
+        a = a.replace('x', '*')
+        a = a.replace('·', '*')
         a = a.replace('÷', '/')
-        c = a.replace('**', '^')
+        show = a.replace('**', '^')
+        show = show.replace('{', '')
+        show = show.replace('}', '')
+        show = show.replace('*', '**·**')
         try:
-            b = a.split('**')
+            gtest = a.split('**')
+            gtest = gtest[1]
             try:
-                b = int(b[1])
-                if int(b)>10:
-                    await message.channel.send('나는 계산기가 아니다냥')
-                elif int(b)<-10:
-                    await message.channel.send('나는 계산기가 아니다냥')
-                else:
+                e1test = a.split('{')
+                e1test = e1test[1]
+                try:
+                    e2test = a.split('}')
+                    e2test = e2test[1]
+                    e1 = int(a.index('{')+1)
+                    e2 = int(a.index('}'))
                     try:
-                        await message.channel.send('**'+c+' = '+str(eval(a))+' (이)다냥**')
-                    except NameError:
-                        await message.channel.send('이건 정상적인 식이 아닌것같다냥')
-            except ValueError:
-                await message.channel.send('지수로는 정수만 올 수 있다냥')
+                        j = float(a[e1:e2])
+                        if j>10:
+                            await message.channel.send('거듭제곱의 지수는 10보다 크면 안된다냥')
+                        elif j<-10:
+                            await message.channel.send('거듭제곱의 지수는 -10보다 작으면 안된다냥')
+                        else:
+                            a = a.replace('{', '')
+                            a = a.replace('}', '')
+                            try:
+                                v = str(eval(a))
+                            except ZeroDivisionError:
+                                await message.channel.send('0은 나누는 수가 될 수 없다냥')
+                            except NameError:
+                                await message.channel.send('계산할 수 없다냥')
+                            except SyntaxError:
+                                await message.channel.send('계산할 수 없다냥')
+                    except ValueError:
+                        await message.channel.send('거듭제곱의 지수로는 실수만 가능하다냥')
+                except IndexError:
+                    await message.channel.send('거듭제곱의 지수는 `{ }` 안에 써야한다냥')
+            except IndexError:
+                await message.channel.send('거듭제곱의 지수는 `{ }` 안에 써야한다냥')
         except IndexError:
             try:
-                await message.channel.send('**'+c+' = '+str(eval(a))+' (이)다냥**')
+                v = str(eval(a))
+            except ZeroDivisionError:
+                await message.channel.send('0은 나누는 수가 될 수 없다냥')
             except NameError:
-                await message.channel.send('이건 정상적인 식이 아닌것같다냥')
+                await message.channel.send('계산할 수 없다냥')
+            except SyntaxError:
+                await message.channel.send('계산할 수 없다냥')
+        await message.channel.send('**'+show+' = '+v+'** (이)다냥')
 
 
 client.run(os.environ["BOT_TOKEN"])
