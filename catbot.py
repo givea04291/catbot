@@ -2,6 +2,8 @@ import discord
 import os
 import datetime
 import random
+import math
+from sympy import *
 
 
 client = discord.Client()
@@ -17,28 +19,23 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-# 목록
-
-    if message.content.endswith('냥이야 목록'):
-        await message.channel.send('명령어 목록을 보고싶다면 `냥이야 목록 <목록이름>` 이라고 말해봐라냥')
-  
-    if message.content.endswith('냥이야 목록 프로필'):
-        await message.channel.send('아직 안만들었다냥 ㅇㅅㅇ')
-
 # 주사위
 
     if message.content.endswith('냥이야 주사위'):
         embed=discord.Embed(title="'주사위' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 주사위 <면의 개수>`', inline=False)
-        embed.add_field(name='면의 개수', value='주사위 면의 개수로는 0보다 큰 정수만 가능함', inline=False)
+        embed.add_field(name='면의 개수', value='주사위 면의 개수로는 0보다 큰 정수만 가능함\n0으로 시작되는 정수는 사용 불가능함', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 주사위'):
+    if message.content.startswith('냥이야 주사위 '):
         try:
             roll = message.content.split(" ")
             rolld = roll[2]
-            dice = random.randint(1, int(rolld))
-            await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 ' + str(dice) + '이(가) 나왔다냥')
+            if rolld.startswith('0'):
+                await message.channel.send('0으로 시작되는 정수는 사용할 수 없다냥')
+            else:
+                dice = random.randint(1, int(rolld))
+                await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 **' + str(dice) + '**이(가) 나왔다냥')
         except ValueError:
             await message.channel.send('주사위 면의 개수로는 0보다 큰 정수가 와야한다냥')
 
@@ -50,7 +47,7 @@ async def on_message(message):
         embed.add_field(name='옵션', value='`옵션` 자리에 공백이 오면 오류 발생', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 골라'):
+    if message.content.startswith('냥이야 골라 '):
         choice = message.content.split(" ")
         choicenumber = random.randint(2, len(choice)-1)
         choiceresult = choice[choicenumber]
@@ -140,6 +137,7 @@ async def on_message(message):
         embed=discord.Embed(title="'프로필' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 프로필 <이름>`', inline=False)
         embed.add_field(name='이름', value='실명으로 써야함', inline=False)
+        embed.add_field(name='현재 추가된 사람', value='`차종현`, `김규용`', inline=False)
         await message.channel.send(embed=embed)
 
     if message.content.startswith('냥이야 프로필 '):
@@ -176,32 +174,30 @@ async def on_message(message):
 
 # 그래프
 
+    if message.content.startswith('냥이야 그래프 '):
+        s = message.content.split(" ")
+        f = s[2]
+        if f.startswith('y='):
+            a = message.content.split('y=')
+            a = a[1]
+            a = a.replace('+', '%2B')
+            a = a.replace(' ', '+')
+            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=y='+str(a))
+        elif f.startswith('f(x)='):
+            a = message.content.split('f(x)=')
+            a = a[1]
+            a = a.replace('+', '%2B')
+            a = a.replace(' ', '+')
+            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=f(x)='+str(a))
+        else:
+            await message.channel.send('그래프의 수식은 `y=` 또는 `f(x)=` 으로 시작해야 한다냥')
+
     if message.content.endswith('냥이야 그래프'):
         embed=discord.Embed(title="'그래프' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 그래프 <수식>`', inline=False)
-        embed.add_field(name='수식', value='`y=(x에 대한 다항식)` 또는 f(x)=(x에 대한 다항식)의 형태로 써야함', inline=False)
+        embed.add_field(name='수식', value='`y=(x에 대한 다항식)` 또는 `f(x)=(x에 대한 다항식)`의 형태로 써야함', inline=False)
         embed.add_field(name='띄어쓰기', value='수식에 들어간 공백은 인식 불가능', inline=False)
         await message.channel.send(embed=embed)
-
-    if message.content.startswith('냥이야 그래프'):
-        s = message.content.split(" ")
-        f = s[2]
-        if str(f[0:2])=='y=':
-            a = message.content.split("y=")
-            b = a[1]
-            b = b.replace('+', '%2B')
-            b = b.replace(' ', '+')
-            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=y='+str(b))
-        elif str(f[0:5])=='f(x)=':            
-            a = message.content.split("f(x)=")
-            b = a[1]
-            b = b.replace('+', '%2B')
-            b = b.replace(' ', '+')
-            await message.channel.send('그래프다냥\nhttps://www.google.com/search?q=f(x)='+str(b))
-        elif str(f)=='도움말':
-            await message.channel.send('`y=(x에 대한 다항식)` 또는 `f(x)=(x에 대한 다항식)` 모양으로 써야한다냥')
-        else:
-            await message.channel.send('그래프 명령어를 잘 모르겠다면 `냥이야 그래프 도움말`을 입력해라냥')
 
 # 계산
 
@@ -212,49 +208,67 @@ async def on_message(message):
         embed.add_field(name='곱하기', value='`×`, `x`, `·` 로 사용 가능', inline=False)
         embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
         embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능\n거듭제곱의 지수는 `{ }` 안에 써야함', inline=False)
+        embed.add_field(name='절댓값', value='`[ ]` 안에 써야함\n`| |` 필요 없음', inline=False)
+        embed.add_field(name='팩토리얼', value='`< >` 안에 써야함\n`!` 필요 없음', inline=False)
+        embed.add_field(name='제곱근', value='`$ %` 또는 `√ %` 안에 써야함', inline=False)
         embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 계산'):
-        a = message.content.split(' ')
-        a = a[2]
-        a = a.replace('^', '**')
-        a = a.replace('×', '*')
-        a = a.replace('x', '*')
-        a = a.replace('·', '*')
-        a = a.replace('÷', '/')
-        show = a.replace('**', '^')
+    if message.content.startswith('냥이야 계산 '):
+        first_cut = message.content.split(' ')
+        first_s = first_cut[2]
+        s = first_s.replace('^', '**')
+        s = s.replace('×', '*')
+        s = s.replace('x', '*')
+        s = s.replace('·', '*')
+        s = s.replace('÷', '/')
+        s = s.replace('[', 'abs(')
+        s = s.replace(']', ')')
+        s = s.replace('<', 'math.factorial(')
+        s = s.replace('>', ')')
+        s = s.replace('$', 'math.sqrt(')
+        s = s.replace('√', 'math.sqrt(')
+        s = s.replace('%', ')')
+        show = first_s.replace('**', '^')
         show = show.replace('{', '')
         show = show.replace('}', '')
-        show = show.replace('*', '**·**')
+        show = show.replace('*', '·')
+        show = show.replace('[', '|')
+        show = show.replace(']', '|')
+        show = show.replace('<', '')
+        show = show.replace('>', '!')
+        show = show.replace('$', '√(')
+        show = show.replace('%', ')')
         try:
-            gtest = a.split('**')
-            gtest = gtest[1]
+            tmultytest = s.split('**')
+            tmultytest = tmultytest[1]
             try:
-                e1test = a.split('{')
-                e1test = e1test[1]
+                multylefttest = s.split('{')
+                multylefttest = multylefttest[1]
                 try:
-                    e2test = a.split('}')
-                    e2test = e2test[1]
-                    e1 = int(a.index('{')+1)
-                    e2 = int(a.index('}'))
+                    multyrighttest = s.split('}')
+                    multyrighttest = multyrighttest[1]
+                    multyleft = int(s.index('{')+1)
+                    multyright = int(s.index('}'))
                     try:
-                        j = float(a[e1:e2])
-                        if j>10:
+                        multyup = float(s[multyleft:multyright])
+                        if multyup>10:
                             await message.channel.send('거듭제곱의 지수는 10보다 크면 안된다냥')
-                        elif j<-10:
+                        elif multyup<-10:
                             await message.channel.send('거듭제곱의 지수는 -10보다 작으면 안된다냥')
                         else:
-                            a = a.replace('{', '')
-                            a = a.replace('}', '')
+                            s = s.replace('{', '')
+                            s = s.replace('}', '')
                             try:
-                                v = str(eval(a))
+                                v = str(eval(s))
                             except ZeroDivisionError:
                                 await message.channel.send('0은 나누는 수가 될 수 없다냥')
                             except NameError:
                                 await message.channel.send('계산할 수 없다냥')
                             except SyntaxError:
                                 await message.channel.send('계산할 수 없다냥')
+                            except ValueError:
+                                await message.channel.send('실수 범위 내에서 음수의 제곱근은 존재하지 않는다냥')
                     except ValueError:
                         await message.channel.send('거듭제곱의 지수로는 실수만 가능하다냥')
                 except IndexError:
@@ -263,14 +277,193 @@ async def on_message(message):
                 await message.channel.send('거듭제곱의 지수는 `{ }` 안에 써야한다냥')
         except IndexError:
             try:
-                v = str(eval(a))
+                v = str(eval(s))
             except ZeroDivisionError:
                 await message.channel.send('0은 나누는 수가 될 수 없다냥')
             except NameError:
                 await message.channel.send('계산할 수 없다냥')
             except SyntaxError:
                 await message.channel.send('계산할 수 없다냥')
-        await message.channel.send('**'+show+' = '+v+'** (이)다냥')
+            except ValueError:
+                await message.channel.send('실수 범위 내에서 음수의 제곱근은 존재하지 않는다냥')
+        await message.channel.send('**'+show+' = '+v+'** (이)다냥')    
+
+    if message.content.startswith('냥이야 인수분해 '):
+        a, b, c, x, y, z = symbols('a b c x y z')
+        cut = message.content.split(' ')
+        s = str(cut[2:])
+        s = s.replace('[', '')
+        s = s.replace(']', '')
+        s = s.replace(',', '')
+        first_s = s.replace("'", '')
+        inp = first_s.replace('**', '^')
+        inp = inp.replace('*', '·')
+        rs = first_s.replace(' ', '')
+        rs = rs.replace('^', '**')
+        rs = rs.replace('×', '*')
+        rs = rs.replace('·', '*')
+        rs = rs.replace('÷', '/')
+        try:
+            test2 = s.split('=')
+            test2 = test2[1]
+            await message.channel.send('인수분해할 식에 등호가 포함되어있으면 안된다냥')
+        except IndexError:
+            cal = factor(rs)
+            cal = str(cal)
+            try:
+                test = cal.split('zoo')
+                test = test[1]
+                await message.channel.send('0은 나누는 수가 될 수 없다냥')
+            except IndexError:
+                show = cal.replace('**', '^')
+                show = show.replace('*', '·')
+                await message.channel.send('**'+str(inp)+' = '+str(show)+'** (이)다냥')
+
+    if message.content.endswith('냥이야 인수분해'):
+        embed=discord.Embed(title="'인수분해' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 인수분해 <식>`', inline=False)
+        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식 분해 가능함', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `·` 로 사용 가능', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        await message.channel.send(embed=embed)
+
+    if message.content.startswith('냥이야 전개 '):
+        a, b, c, x, y, z = symbols('a b c x y z')
+        cut = message.content.split(' ')
+        s = str(cut[2:])
+        s = s.replace('[', '')
+        s = s.replace(']', '')
+        s = s.replace(',', '')
+        first_s = s.replace("'", '')
+        inp = first_s.replace('**', '^')
+        inp = inp.replace('*', '·')
+        rs = first_s.replace(' ', '')
+        rs = rs.replace('^', '**')
+        rs = rs.replace('×', '*')
+        rs = rs.replace('·', '*')
+        rs = rs.replace('÷', '/')
+        try:
+            test2 = s.split('=')
+            test2 = test2[1]
+            await message.channel.send('전개할 식에 등호가 포함되어있으면 안된다냥')
+        except IndexError:
+            cal = expand(rs)
+            cal = str(cal)
+            try:
+                test = cal.split('zoo')
+                test = test[1]
+                await message.channel.send('0은 나누는 수가 될 수 없다냥')
+            except IndexError:
+                show = cal.replace('**', '^')
+                show = show.replace('*', '·')
+                await message.channel.send('**'+str(inp)+' = '+str(show)+'** (이)다냥')
+
+    if message.content.endswith('냥이야 전개'):
+        embed=discord.Embed(title="'전개' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 전개 <식>`', inline=False)
+        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식 전개 가능함', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `·` 로 사용 가능', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        await message.channel.send(embed=embed)
+
+    if message.content.startswith('냥이야 방정식 '):
+        if message.content.endswith('=0'):
+            x = symbols('x')
+            cut = message.content.split(' ')
+            s = str(cut[2:])
+            s = s.replace('[', '')
+            s = s.replace(']', '')
+            s = s.replace(',', '')
+            first_s = s.replace("'", '')
+            inp = first_s.replace('**', '^')
+            inp = inp.replace('*', '·')
+            rs = first_s.replace(' ', '')
+            rs = rs.replace('^', '**')
+            rs = rs.replace('×', '*')
+            rs = rs.replace('·', '*')
+            rs = rs.replace('÷', '/')
+            try:
+                a = rs.split('=')
+                testest = a[1]
+                try:
+                    t = a[2]
+                    await message.channel.send('방정식에 등호는 하나만 존재할 수 있다냥')
+                except IndexError:
+                    try:
+                        show = str(solve(a[0], dict=True))
+                        show = show.replace('[', '')
+                        show = show.replace(']', '')
+                        show = show.replace('{', '')
+                        show = show.replace('}', '')
+                        show = show.replace(':', ' =')
+                        show = show.replace('**', '^')
+                        show = show.replace('*', '·')
+                        show = show.replace('I', 'i')
+                        show = show.replace('sqrt', '√')
+                        if show.startswith('x'):
+                            await message.channel.send('방정식 '+str(inp)+' 의 해는 **'+str(show)+'** (이)다냥')
+                        else:
+                            await message.channel.send('계산할 수 없는 방정식이다냥')
+                    except:
+                        await message.channel.send('계산할 수 없는 방정식이다냥')
+            except IndexError:
+                await message.channel.send('방정식에는 등호가 포함되어있어야 한다냥')
+        elif message.content.endswith('= 0'):
+            x = symbols('x')
+            cut = message.content.split(' ')
+            s = str(cut[2:])
+            s = s.replace('[', '')
+            s = s.replace(']', '')
+            s = s.replace(',', '')
+            first_s = s.replace("'", '')
+            inp = first_s.replace('**', '^')
+            inp = inp.replace('*', '·')
+            rs = first_s.replace(' ', '')
+            rs = rs.replace('^', '**')
+            rs = rs.replace('×', '*')
+            rs = rs.replace('·', '*')
+            rs = rs.replace('÷', '/')
+            try:
+                a = rs.split('=')
+                testest = a[1]
+                try:
+                    t = a[2]
+                    await message.channel.send('방정식에 등호는 하나만 존재할 수 있다냥')
+                except IndexError:
+                    try:
+                        show = str(solve(a[0], dict=True))
+                        show = show.replace('[', '')
+                        show = show.replace(']', '')
+                        show = show.replace('{', '')
+                        show = show.replace('}', '')
+                        show = show.replace(':', ' =')
+                        show = show.replace('**', '^')
+                        show = show.replace('*', '·')
+                        show = show.replace('I', 'i')
+                        show = show.replace('sqrt', '√')
+                        if show.startswith('x'):
+                            await message.channel.send('방정식 '+str(inp)+' 의 해는 **'+str(show)+'** (이)다냥')
+                        else:
+                            await message.channel.send('계산할 수 없는 방정식이다냥')
+                    except:
+                        await message.channel.send('계산할 수 없는 방정식이다냥')
+            except IndexError:
+                await message.channel.send('방정식에는 등호가 포함되어있어야 한다냥')
+        else:
+            await message.channel.send('방정식은 `x에 대한 다항식 = 0` 의 형태여야 한다냥')
+    
+    if message.content.endswith('냥이야 방정식'):
+        embed=discord.Embed(title="'방정식' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 방정식 <x에 대한 다항식>=0`', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `·` 로 사용 가능', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        await message.channel.send(embed=embed)
 
 
 client.run(os.environ["BOT_TOKEN"])
