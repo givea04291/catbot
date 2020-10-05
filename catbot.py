@@ -3,7 +3,7 @@ import os
 import datetime
 import random
 import math
-from sympy import *
+from sympy import factor, expand, symbols, solve
 
 
 client = discord.Client()
@@ -27,7 +27,7 @@ async def on_message(message):
         embed.add_field(name='면의 개수', value='주사위 면의 개수로는 0보다 큰 정수만 가능함\n0으로 시작되는 정수는 사용 불가능함', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 주사위 '):
+    elif message.content.startswith('냥이야 주사위 '):
         try:
             roll = message.content.split(" ")
             rolld = roll[2]
@@ -41,13 +41,13 @@ async def on_message(message):
 
 # 선택
 
-    if message.content.endswith('냥이야 골라'):
+    elif message.content.endswith('냥이야 골라'):
         embed=discord.Embed(title="'골라' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 골라 <옵션1> [옵션2] [옵션3] …`', inline=False)
         embed.add_field(name='옵션', value='`옵션` 자리에 공백이 오면 오류 발생', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 골라 '):
+    elif message.content.startswith('냥이야 골라 '):
         choice = message.content.split(" ")
         choicenumber = random.randint(2, len(choice)-1)
         choiceresult = choice[choicenumber]
@@ -55,7 +55,7 @@ async def on_message(message):
 
 # 추천
 
-    if message.content.endswith('냥이야 애니추천'):
+    elif message.content.endswith('냥이야 애니추천'):
         ani = "해피슈가라이프 코바야시네메이드드래곤 혈계전선 중2병이라도사랑하고싶어 데이트어라이브 지박소년하나코군 귀멸의칼날 소드아트온라인 너의이름은 목소리의형태 날씨의아이 진격의거인 늑대아이 " \
               "니세코이 역시내청춘러브코메디는잘못됐다 오버로드 방패용사성공담 아픈건싫으므로방어력에올인하려고합니다 기숙학교의줄리엣 전생했더니슬라임이었던건에대해여 이세계콰르텟 유녀전기 무장소녀베키알리즘 " \
               "살육의천사 노게임노라이프 케이온 나의히어로아카데미아 원펀맨 카구야님은고백받고싶어 여성향게임의파멸플래그밖에없는악역앵애로환생해버렸다 데스마치에서시작되는이세계광상곡 다윈즈게임 " \
@@ -74,7 +74,7 @@ async def on_message(message):
         sayresult = saychoice[saynumber - 1]
         await message.channel.send(aniresult + sayresult)
 
-    if message.content.endswith('냥이야 게임추천'):
+    elif message.content.endswith('냥이야 게임추천'):
         game = "오버워치 오수 배틀그라운드 마인크래프트 리그오브레전드 얼불춤 발로란트 테라리아 데스티니가디언즈 GTA 오리와눈먼숲 오리와도깨비불 레포데 데바데 서브노티카 스타크래프트 얼불춤" \
                "슬라임랜처 시티즈스카이라인"
         gamechoice = game.split(" ")
@@ -88,7 +88,7 @@ async def on_message(message):
 
 # 시간
 
-    if message.content.endswith('냥이야 시간'):
+    elif message.content.endswith('냥이야 시간'):
         year = datetime.datetime.today().year
         month = datetime.datetime.today().month
         day = datetime.datetime.today().day
@@ -98,33 +98,33 @@ async def on_message(message):
         await message.channel.send('지금은 ' + str(year) + '년 ' + str(month) + '월 ' + str(day) + '일 '
                                    + str(hour) + '시 ' + str(minute) + '분 ' + str(second) + '초다냥')
 
-    if message.content.startswith('냥이야 몇년'):
+    elif message.content.startswith('냥이야 몇년'):
         year = datetime.datetime.today().year
         await message.channel.send(str(year) + '년이다냥')
 
-    if message.content.startswith('냥이야 몇월'):
+    elif message.content.startswith('냥이야 몇월'):
         month = datetime.datetime.today().month
         await message.channel.send(str(month) + '월이다냥')
 
-    if message.content.startswith('냥이야 몇일'):
+    elif message.content.startswith('냥이야 몇일'):
         day = datetime.datetime.today().day
         await message.channel.send(str(day) + '일이다냥')
 
-    if message.content.startswith('냥이야 몇시'):
+    elif message.content.startswith('냥이야 몇시'):
         hour = datetime.datetime.today().hour
         await message.channel.send(str(hour) + '시다냥')
 
-    if message.content.startswith('냥이야 몇분'):
+    elif message.content.startswith('냥이야 몇분'):
         minute = datetime.datetime.today().minute
         await message.channel.send(str(minute) + '분이다냥')
 
-    if message.content.startswith('냥이야 몇초'):
+    elif message.content.startswith('냥이야 몇초'):
         second = datetime.datetime.today().second
         await message.channel.send(str(second) + '초... ' + str(second+1) + '초.. 지나가버렸다냥')
 
 # 대화
 
-    if message.content.endswith('냥이야'):
+    elif message.content.endswith('냥이야'):
         say = "왜부르냥?/냥?/무슨일이냥?"
         saychoice = say.split("/")
         saynumber = random.randint(1, 3)
@@ -133,14 +133,14 @@ async def on_message(message):
 
 # 프로필
 
-    if message.content.endswith('냥이야 프로필'):
+    elif message.content.endswith('냥이야 프로필'):
         embed=discord.Embed(title="'프로필' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 프로필 <이름>`', inline=False)
         embed.add_field(name='이름', value='실명으로 써야함', inline=False)
         embed.add_field(name='현재 추가된 사람', value='`차종현`, `김규용`', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 프로필 '):
+    elif message.content.startswith('냥이야 프로필 '):
         cut = message.content.split(' ')
         name = cut[2]
         if name=='차종현':
@@ -174,7 +174,7 @@ async def on_message(message):
 
 # 그래프
 
-    if message.content.startswith('냥이야 그래프 '):
+    elif message.content.startswith('냥이야 그래프 '):
         s = message.content.split(" ")
         f = s[2]
         if f.startswith('y='):
@@ -192,7 +192,7 @@ async def on_message(message):
         else:
             await message.channel.send('그래프의 수식은 `y=` 또는 `f(x)=` 으로 시작해야 한다냥')
 
-    if message.content.endswith('냥이야 그래프'):
+    elif message.content.endswith('냥이야 그래프'):
         embed=discord.Embed(title="'그래프' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 그래프 <수식>`', inline=False)
         embed.add_field(name='수식', value='`y=(x에 대한 다항식)` 또는 `f(x)=(x에 대한 다항식)`의 형태로 써야함', inline=False)
@@ -201,7 +201,7 @@ async def on_message(message):
 
 # 계산
 
-    if message.content.endswith('냥이야 계산'):
+    elif message.content.endswith('냥이야 계산'):
         embed=discord.Embed(title="'계산' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 계산 <식>`', inline=False)
         embed.add_field(name='더하기/빼기', value='`+` 및 `-` 로 사용 가능', inline=False)
@@ -214,10 +214,15 @@ async def on_message(message):
         embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 계산 '):
+    elif message.content.startswith('냥이야 계산 '):
         first_cut = message.content.split(' ')
-        first_s = first_cut[2]
-        s = first_s.replace('^', '**')
+        first_s = first_cut[2:]
+        s = str(first_s).replace('^', '**')
+        s = s.replace(' ', '')
+        s = s.replace("['", '')
+        s = s.replace("']", '')
+        s = s.replace("'", '')
+        s = s.replace(',', '')
         s = s.replace('×', '*')
         s = s.replace('x', '*')
         s = s.replace('·', '*')
@@ -229,7 +234,11 @@ async def on_message(message):
         s = s.replace('$', 'math.sqrt(')
         s = s.replace('√', 'math.sqrt(')
         s = s.replace('%', ')')
-        show = first_s.replace('**', '^')
+        show = str(first_s).replace('**', '^')
+        show = show.replace("['", '')
+        show = show.replace("']", '')
+        show = show.replace("'", '')
+        show = show.replace(',', '')
         show = show.replace('{', '')
         show = show.replace('}', '')
         show = show.replace('*', '·')
@@ -260,7 +269,7 @@ async def on_message(message):
                             s = s.replace('{', '')
                             s = s.replace('}', '')
                             try:
-                                v = str(eval(s))
+                                v = str(eval(str(s)))
                             except ZeroDivisionError:
                                 await message.channel.send('0은 나누는 수가 될 수 없다냥')
                             except NameError:
@@ -268,7 +277,7 @@ async def on_message(message):
                             except SyntaxError:
                                 await message.channel.send('계산할 수 없다냥')
                             except ValueError:
-                                await message.channel.send('실수 범위 내에서 음수의 제곱근은 존재하지 않는다냥')
+                                await message.channel.send('계산할 수 없다냥')
                     except ValueError:
                         await message.channel.send('거듭제곱의 지수로는 실수만 가능하다냥')
                 except IndexError:
@@ -277,7 +286,7 @@ async def on_message(message):
                 await message.channel.send('거듭제곱의 지수는 `{ }` 안에 써야한다냥')
         except IndexError:
             try:
-                v = str(eval(s))
+                v = str(eval(str(s)))
             except ZeroDivisionError:
                 await message.channel.send('0은 나누는 수가 될 수 없다냥')
             except NameError:
@@ -285,11 +294,12 @@ async def on_message(message):
             except SyntaxError:
                 await message.channel.send('계산할 수 없다냥')
             except ValueError:
-                await message.channel.send('실수 범위 내에서 음수의 제곱근은 존재하지 않는다냥')
-        await message.channel.send('**'+show+' = '+v+'** (이)다냥')    
+                await message.channel.send('계산할 수 없다냥')
+        await message.channel.send('**'+show+' = '+v+'** (이)다냥')
 
-    if message.content.startswith('냥이야 인수분해 '):
+    elif message.content.startswith('냥이야 인수분해 '):
         a, b, c, x, y, z = symbols('a b c x y z')
+        print(a+b+c+x+y+z)
         cut = message.content.split(' ')
         s = str(cut[2:])
         s = s.replace('[', '')
@@ -319,7 +329,7 @@ async def on_message(message):
                 show = show.replace('*', '·')
                 await message.channel.send('**'+str(inp)+' = '+str(show)+'** (이)다냥')
 
-    if message.content.endswith('냥이야 인수분해'):
+    elif message.content.endswith('냥이야 인수분해'):
         embed=discord.Embed(title="'인수분해' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 인수분해 <식>`', inline=False)
         embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식 분해 가능함', inline=False)
@@ -329,7 +339,7 @@ async def on_message(message):
         embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 전개 '):
+    elif message.content.startswith('냥이야 전개 '):
         a, b, c, x, y, z = symbols('a b c x y z')
         cut = message.content.split(' ')
         s = str(cut[2:])
@@ -360,7 +370,7 @@ async def on_message(message):
                 show = show.replace('*', '·')
                 await message.channel.send('**'+str(inp)+' = '+str(show)+'** (이)다냥')
 
-    if message.content.endswith('냥이야 전개'):
+    elif message.content.endswith('냥이야 전개'):
         embed=discord.Embed(title="'전개' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 전개 <식>`', inline=False)
         embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식 전개 가능함', inline=False)
@@ -370,7 +380,7 @@ async def on_message(message):
         embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
         await message.channel.send(embed=embed)
 
-    if message.content.startswith('냥이야 방정식 '):
+    elif message.content.startswith('냥이야 방정식 '):
         if message.content.endswith('=0'):
             x = symbols('x')
             cut = message.content.split(' ')
@@ -389,8 +399,10 @@ async def on_message(message):
             try:
                 a = rs.split('=')
                 testest = a[1]
+                print(testest)
                 try:
                     t = a[2]
+                    print(t)
                     await message.channel.send('방정식에 등호는 하나만 존재할 수 있다냥')
                 except IndexError:
                     try:
@@ -456,7 +468,7 @@ async def on_message(message):
         else:
             await message.channel.send('방정식은 `x에 대한 다항식 = 0` 의 형태여야 한다냥')
     
-    if message.content.endswith('냥이야 방정식'):
+    elif message.content.endswith('냥이야 방정식'):
         embed=discord.Embed(title="'방정식' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 방정식 <x에 대한 다항식>=0`', inline=False)
         embed.add_field(name='곱하기', value='`×`, `·` 로 사용 가능', inline=False)
@@ -464,6 +476,62 @@ async def on_message(message):
         embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능', inline=False)
         embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
         await message.channel.send(embed=embed)
+
+# 가위바위보
+
+    elif message.content.startswith('냥이야 가위바위보 '):
+        cut = message.content.split(' ')
+        select = cut[2]
+        catfull = '가위 바위 보'
+        catfull = catfull.split(' ')
+        catselect = catfull[random.randint(0, 2)]
+        if select == catselect:
+            score = 0
+        elif select == '가위':
+            if catselect == '바위':
+                score = 1
+            if catselect == '보':
+                score = -1
+        elif select == '바위':
+            if catselect == '보':
+                score = 1
+            if catselect == '가위':
+                score = -1
+        elif select == '보':
+            if catselect == '가위':
+                score = 1
+            if catselect == '바위':
+                score = -1
+        else:
+            error = '너 가위바위보 할 줄 모르는거냥?/...냥?/제대로 하라냥'
+            error = error.split('/')
+            error = error[random.randint(0, 2)]
+            await message.channel.send(error)
+        if score == 1:
+            show = '가소롭다냥!/내가 이겼다냥!/쉽다냥!'
+            show = show.split('/')
+            show = show[random.randint(0, 2)]
+        if score == 0:
+            show = '비겼다냥..!'
+        if score == -1:
+            show = '*(부들부들)*/너 좀 한다냥?/졌다냥...'
+            show = show.split('/')
+            show = show[random.randint(0, 2)]
+        await message.channel.send('(플레이어) **'+str(select)+'** vs **'+str(catselect)+'** (냥이)\n'+str(show))
+
+    elif message.content.endswith('냥이야 가위바위보'):
+        embed=discord.Embed(title="'가위바위보' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
+        await message.channel.send(embed=embed)
+
+# 예외처리
+
+    elif message.content.startswith('냥이야 '):
+        say = "냥...?/냥?/무슨 말인지 모르겠다냥"
+        saychoice = say.split("/")
+        saynumber = random.randint(1, 3)
+        sayresult = saychoice[saynumber - 1]
+        await message.channel.send(sayresult)
 
 
 client.run(os.environ["BOT_TOKEN"])
