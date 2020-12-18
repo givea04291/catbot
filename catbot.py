@@ -517,8 +517,20 @@ async def on_message(message):
             show = '*(부들부들)*/너 좀 한다냥?/졌다냥...'
             show = show.split('/')
             show = show[random.randint(0, 2)]
-        await message.channel.send('(플레이어) **'+str(select)+'** vs **'+str(catselect)+'** (냥이)\n'+str(show))
-
+        if select == '가위':
+            hand = ':v:'
+        if select == '바위':
+            hand = ':fist:'
+        if select == '보':
+            hand = ':raised_hand:'
+        if catselect == '가위':
+            cathand = ':v:'
+        if catselect == '바위':
+            cathand = ':fist:'
+        if catselect == '보':
+            cathand = ':raised_hand:'
+        await message.channel.send('<@' + str(message.author.id) + '> '+str(hand)+' vs '+str(cathand)+' **냥이**\n'+str(show))
+        
     elif message.content.endswith('냥이야 가위바위보'):
         embed=discord.Embed(title="'가위바위보' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
