@@ -6,7 +6,7 @@ import math
 from sympy import factor, expand, symbols, solve
 
 
-catmoney = {}
+catmoney = {519751765080408074: 45, 645266885495226388: 5000}
 client = discord.Client()
 
 
