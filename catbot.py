@@ -536,6 +536,15 @@ async def on_message(message):
         embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
         await message.channel.send(embed=embed)
 
+# 돈
+
+    elif message.content == '냥이야 돈':
+        try:
+            await message.channel.send('<@'+str(message.author.id)+'> 의 현재 돈은 **'+str(catmoney[message.author.id])+'원** 이다냥')
+        except KeyError:
+            catmoney[message.author.id] = 5000
+            await message.channel.send('돈 시스템을 처음 사용하는 <@'+str(message.author.id)+'> 에게 5000원을 지급했다냥')
+
 # 예외처리
 
     elif message.content.startswith('냥이야 '):
@@ -545,5 +554,66 @@ async def on_message(message):
         sayresult = saychoice[saynumber - 1]
         await message.channel.send(sayresult)
 
+# 명령어  
+
+    elif message.content.startswith('/data'):
+        if message.author.id == 519751765080408074:
+            a = message.content.split(' ')
+            try:
+                act = a[1]
+                # get
+                if act == 'get':
+                    try:
+                        box = a[2]
+                        if box == 'catmoney':
+                            try:
+                                name = a[3]
+                                if name == '@a':
+                                    await message.channel.send(catmoney)
+                                else:
+                                    try:
+                                        await message.channel.send(str(name)+'의 현재 돈은 **'+str(catmoney[int(name)])+'원** 이다냥')
+                                    except KeyError:
+                                        await message.channel.send('알 수 없는 유저의 ID이다냥')
+                            except IndexError:
+                                await message.channel.send('명령어의 실행 대상 유저가 필요하다냥')
+                        else:
+                            await message.channel.send('명령어의 실행 대상 딕셔너리가 필요하다냥')
+                    except IndexError:
+                        await message.channel.send('명령어의 실행 대상 딕셔너리가 필요하다냥')
+                # set
+                elif act == 'set':
+                    try:
+                        box = a[2]
+                        if box == 'catmoney':
+                            try:
+                                name = a[3]
+                                test = catmoney[int(name)]
+                                try:
+                                    value = a[4]
+                                    try:
+                                        test = int(value)
+                                        catmoney[int(name)] = test
+                                        await message.channel.send(str(name)+'의 돈을 **'+str(test)+'원** 으로 설정했다냥')
+                                    except ValueError:
+                                        await message.channel.send('실행 변수의 자료형은 자연수이다냥')
+                                except IndexError:
+                                    await message.channel.send('명령어의 대상이 되는 실행 변수가 필요하다냥')
+                            except IndexError:
+                                await message.channel.send('명령어의 실행 대상 유저가 필요하다냥')
+                            except KeyError:
+                                await message.channel.send('알 수 없는 유저의 ID이다냥')
+                            except ValueError:
+                                await message.channel.send('알 수 없는 유저의 ID이다냥')
+                        else:
+                            await message.channel.send('명령어의 실행 대상 딕셔너리가 필요하다냥')
+                    except IndexError:
+                        await message.channel.send('명령어의 실행 대상 딕셔너리가 필요하다냥')
+                else:
+                    await message.channel.send('알 수 없는 추가 데이터다냥')
+            except IndexError:
+                await message.channel.send('명령어의 추가 데이터가 필요하다냥')
+        else:
+            await message.channel.send('명령어 접근 권한이 없다냥')
 
 client.run(os.environ["BOT_TOKEN"])
