@@ -537,14 +537,66 @@ async def on_message(message):
         embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
         await message.channel.send(embed=embed)
 
-# 돈
+# 돈/도박
 
     elif message.content == '냥이야 돈':
         try:
-            await message.channel.send('<@'+str(message.author.id)+'> 의 현재 돈은 **'+str(catmoney[message.author.id])+'원** 이다냥')
+            test = catmoney[message.author.id]
+            if test < 500:
+                catmoney[message.author.id] = test + 5000
+                await message.channel.send('<@'+str(message.author.id)+'> 의 돈이 500원보다 적어서 **5000원**을 지급했다냥\n현재 돈은 **'+str(catmoney[message.author.id])+'원** 이다냥')
+            else:
+                await message.channel.send('<@'+str(message.author.id)+'> 의 현재 돈은 **'+str(catmoney[message.author.id])+'원** 이다냥')
         except KeyError:
             catmoney[message.author.id] = 5000
-            await message.channel.send('돈 시스템을 처음 사용하는 <@'+str(message.author.id)+'> 에게 5000원을 지급했다냥')
+            await message.channel.send('돈 시스템을 처음 사용하는 <@'+str(message.author.id)+'> 에게 **5000원**을 지급했다냥')
+
+    elif message.content == '냥이야 도박':
+        embed=discord.Embed(title="'도박' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 도박 <거는 돈>`', inline=False)
+        embed.add_field(name='거는 돈', value='보유한 돈보다 많거나 같은 돈은 걸 수 없음', inline=False)
+        await message.channel.send(embed=embed)
+
+    elif message.content.startswith('냥이야 도박 '):
+        value = message.content.split(' ')
+        value = value[2]
+        if value == '확률':
+            await message.channel.send('내 도박은 65%로 실패하고, 33%로 성공하고, 2%로 특별한 일이 일어난다냥')
+        else:
+            try:
+                value = int(value)
+                if value < 1:
+                    await message.channel.send('거는 돈으로는 자연수만 올 수 있다냥')
+                else:
+                    if value >= int(catmoney[message.author.id]):
+                        await message.channel.send('거는 돈이 보유한 돈보다 많거나 같을 수는 없다냥')
+                    else:
+                        g1 = ['fail'] * 65
+                        g2 = ['x2'] * 20
+                        g3 = ['x3'] * 9
+                        g4 = ['x5'] * 4
+                        g5 = ['x100', 'website']
+                        gambling = g1+g2+g3+g4+g5
+                        final = random.choice(gambling)
+                        if final == 'fail':
+                            catmoney[message.author.id] = catmoney[message.author.id] - value
+                            await message.channel.send('도박에 실패해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원** 이 되었다냥')
+                        elif final == 'x2':
+                            catmoney[message.author.id] = catmoney[message.author.id] + (value * 2)
+                            await message.channel.send('2배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원** 이 되었다냥')
+                        elif final == 'x3':
+                            catmoney[message.author.id] = catmoney[message.author.id] + (value * 3)
+                            await message.channel.send('3배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원** 이 되었다냥')
+                        elif final == 'x5':
+                            catmoney[message.author.id] = catmoney[message.author.id] + (value * 5)
+                            await message.channel.send('5배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원** 이 되었다냥')
+                        elif final == 'x100':
+                            catmoney[message.author.id] = catmoney[message.author.id] + (value * 100)
+                            await message.channel.send('**당첨!**\n100배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원** 이 되었다냥!')
+                        elif final == 'website':
+                            await message.channel.send('도박은 너무 많이 하면 해롭다냥!\nhttps://www.kcgp.or.kr/pcMain.do')
+            except ValueError:   
+                await message.channel.send('거는 돈으로는 자연수만 올 수 있다냥')
 
 # 예외처리
 
