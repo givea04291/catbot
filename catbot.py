@@ -6,7 +6,7 @@ import math
 from sympy import factor, expand, symbols, solve
 
 
-catmoney = {519751765080408074: 5000, 645266885495226388: 1, 473827858175754250: 1, 390057085209149440: 1000000, 633224033667907584: 99900000000000000001, 582832386748973057: 2262000, 485716741289279488: 1, 535758069620277249: 750000, 704479706505936978: 0}
+catmoney = {519751765080408074: 0, 645266885495226388: 1, 473827858175754250: 1, 390057085209149440: 0, 633224033667907584: 0, 582832386748973057: 2262000, 485716741289279488: 1, 535758069620277249: 0, 704479706505936978: 0, 554214990001995776: 0}
 client = discord.Client()
 
 
@@ -553,13 +553,14 @@ async def on_message(message):
 
     elif message.content == '냥이야 도박':
         embed=discord.Embed(title="'도박' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 도박 <거는 돈/확률/올인>`', inline=False)
+        embed.add_field(name='사용법', value='`냥이야 도박 <거는 돈/확률/올인/절반>`', inline=False)
         embed.add_field(name='거는 돈', value='보유한 돈보다 많은 돈을 걸 수 없음', inline=False)
         embed.add_field(name='확률', value='일반 도박 : `실패 65%`, `2배 20%`, `3배 9%`, `5배 4%`, `특수 2%`\n올인 도박 : `실패 89%`, `4배 5%`, `5배 3%`, `7배 2%`, `특수 1%`', inline=False)
         embed.add_field(name='올인', value='거는 돈을 보유한 돈으로 설정함. 이 때, 실패율과 성공배율이 대폭 증가함', inline=False)
+        embed.add_field(name='절반', value='거는 돈을 보유한 돈의 절반으로 설정함. 이 때, 확률은 일반도박과 동일함', inline=False)
         embed.add_field(name='계산법', value='`돈` = `보유한 돈` - `거는 돈` + (`거는 돈` x `배율`)', inline=False)
         await message.channel.send(embed=embed)
-
+    
     elif message.content.startswith('냥이야 도박 '):
         value = message.content.split(' ')
         value = value[2]
@@ -592,6 +593,61 @@ async def on_message(message):
                 elif final == 'x150':
                     catmoney[message.author.id] = value * 150
                     await message.channel.send('**당첨!!!**\n150배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥!')
+        elif value == '절반':
+            if int(catmoney[message.author.id]) == 1:
+                await message.channel.send('보유한 돈이 1원이면 절반도박을 할 수 없다냥')
+            elif int(catmoney[message.author.id]) % 2 == 0:
+                value = int(int(catmoney[message.author.id]) / 2)
+                g1 = ['fail'] * 65
+                g2 = ['x2'] * 20
+                g3 = ['x3'] * 9
+                g4 = ['x5'] * 4
+                g5 = ['x100', 'website']
+                gambling = g1+g2+g3+g4+g5
+                final = random.choice(gambling)
+                if final == 'fail':
+                    catmoney[message.author.id] = catmoney[message.author.id] - value
+                    await message.channel.send('도박에 실패해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x2':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 2) - value
+                    await message.channel.send('2배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x3':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 3) - value
+                    await message.channel.send('3배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x5':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 5) - value
+                    await message.channel.send('5배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x100':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 100) - value
+                    await message.channel.send('**당첨!**\n100배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥!')
+                elif final == 'website':
+                    await message.channel.send('도박은 너무 많이 하면 해롭다냥!\nhttps://www.kcgp.or.kr/pcMain.do')
+            elif int(catmoney[message.author.id]) % 2 == 1:
+                value = int((int(catmoney[message.author.id])-1) / 2)
+                g1 = ['fail'] * 65
+                g2 = ['x2'] * 20
+                g3 = ['x3'] * 9
+                g4 = ['x5'] * 4
+                g5 = ['x100', 'website']
+                gambling = g1+g2+g3+g4+g5
+                final = random.choice(gambling)
+                if final == 'fail':
+                    catmoney[message.author.id] = catmoney[message.author.id] - value
+                    await message.channel.send('도박에 실패해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x2':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 2) - value
+                    await message.channel.send('2배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x3':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 3) - value
+                    await message.channel.send('3배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x5':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 5) - value
+                    await message.channel.send('5배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥')
+                elif final == 'x100':
+                    catmoney[message.author.id] = catmoney[message.author.id] + (value * 100) - value
+                    await message.channel.send('**당첨!**\n100배 도박에 성공해서 <@'+str(message.author.id)+'> 의 돈은 **'+str(catmoney[message.author.id])+'원**이 되었다냥!')
+                elif final == 'website':
+                    await message.channel.send('도박은 너무 많이 하면 해롭다냥!\nhttps://www.kcgp.or.kr/pcMain.do')
         else:
             try:
                 value = int(value)
@@ -627,7 +683,7 @@ async def on_message(message):
                             await message.channel.send('도박은 너무 많이 하면 해롭다냥!\nhttps://www.kcgp.or.kr/pcMain.do')
             except ValueError:   
                 await message.channel.send('거는 돈으로는 자연수만 올 수 있다냥')
-
+                
 # 예외처리
 
     elif message.content.startswith('냥이야 '):
