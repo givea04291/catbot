@@ -19,7 +19,7 @@ Play with this cat *(who can even calculate!)* in discord server!
 - Simple games
 - Management function for members and roles in your discord server
 ## Inviting
-**In order to invite catbot to your discord server, you must have administrator authority**  
+**In order to invite catbot to your discord server, you must have administrator authority.**  
 Click [here] to invite catbot to server. You must turn on Administrator Access to play with catbot without errors!
 ## How To Play?
 If you want to converse with catbot, enter `냥이야 [command]` in discord.  
