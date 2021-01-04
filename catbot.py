@@ -3,9 +3,12 @@ import os
 import random
 import math
 from sympy import factor, expand, symbols, solve
+import sys
+import json
+import urllib.request
 
 
-catmoney = {519751765080408074: 5000, 645266885495226388: 1, 473827858175754250: 1, 390057085209149440: 100000099000, 633224033667907584: 0, 582832386748973057: 2262000, 485716741289279488: 1, 535758069620277249: 0, 704479706505936978: 0, 554214990001995776: 0}
+catmoney = {519751765080408074: 35000, 645266885495226388: 1, 473827858175754250: 1, 390057085209149440: 5000, 633224033667907584: 0, 582832386748973057: 2262000, 485716741289279488: 1, 535758069620277249: 0, 704479706505936978: 0, 554214990001995776: 0}
 
 client = discord.Client()
 
@@ -20,42 +23,41 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-# 오류 방지
+# [오류 방지]
 
     if message.author == client.user:
         return
 
-# 주사위
+# [미니게임]/주사위
 
-    if message.content == '냥이야 주사위':
+    elif message.content == '냥이야 주사위':
         embed=discord.Embed(title="'주사위' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 주사위 <면의 개수>`', inline=False)
-        embed.add_field(name='면의 개수', value='주사위 면의 개수로는 0보다 큰 정수만 가능함\n0으로 시작되는 정수는 사용 불가능함', inline=False)
+        embed.add_field(name='면의 개수', value='주사위 면의 수는 0보다 큰 정수여야 합니다.', inline=False)
         embed.add_field(name='꽝', value='5%의 확률로 꽝이 나옴', inline=False)
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 주사위 '):
         roll = message.content.split(" ")
         rolld = roll[2]
-        if rolld.startswith('0'):
-            await message.channel.send('0으로 시작하는 숫자가 어디있냥?! 바보냥?')
-        else:
-            try:
-                inttest = int(rolld)
-                print(inttest)
-                faildice1 = ['0'] * 95
-                faildice2 = ['fail'] * 5
-                faildice = faildice1 + faildice2
-                diceresult = random.choice(faildice)
-                if diceresult == '0':
-                    dice = random.randint(1, int(rolld))
-                    await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 **' + str(dice) + '**이(가) 나왔다냥!')
-                elif diceresult == 'fail':
-                    await message.channel.send('주사위가 책상 밖으로 떨어져버렸다냥!')
-            except ValueError:
-                await message.channel.send('어떤 주사위를 굴리라는거냥..?')
+        try:
+            inttest = int(rolld)
+            print(inttest)
+            faildice1 = ['0'] * 95
+            faildice2 = ['fail'] * 5
+            faildice = faildice1 + faildice2
+            diceresult = random.choice(faildice)
+            if diceresult == '0':
+                dice = random.randint(1, int(rolld))
+                await message.channel.send('정' + str(rolld) + '면체 주사위를 굴려서 **' + str(dice) + '**이(가) 나왔다냥!')
+            elif diceresult == 'fail':
+                await message.channel.send('주사위가 책상 밖으로 떨어져버렸다냥!')
+        except ValueError:
+            says = ['그런 주사위가 어디있냥!?','어떤 주사위를 굴리라는거냥..?']
+            say = random.choice(says)
+            await message.channel.send(say)
 
-# 선택
+# [미니게임]/선택
 
     elif message.content == '냥이야 골라':
         embed=discord.Embed(title="'골라' 사용법", color=0xABF200)
@@ -68,19 +70,170 @@ async def on_message(message):
         choiceresult = choice[choicenumber]
         await message.channel.send('내 선택은...\n**'+choiceresult+'**냥!')
 
-# 계산
+# [미니게임]/가위바위보
+
+    elif message.content.startswith('냥이야 가위바위보 '):
+        cut = message.content.split(' ')
+        select = cut[2]
+        catfull = '가위 바위 보'
+        catfull = catfull.split(' ')
+        catselect = catfull[random.randint(0, 2)]
+        if select == catselect:
+            score = 0
+        elif select == '가위':
+            if catselect == '바위':
+                score = 1
+            if catselect == '보':
+                score = -1
+        elif select == '바위':
+            if catselect == '보':
+                score = 1
+            if catselect == '가위':
+                score = -1
+        elif select == '보':
+            if catselect == '가위':
+                score = 1
+            if catselect == '바위':
+                score = -1
+        else:
+            errorsay = ['...냥?','가위, 바위, 보 3개중에 하나를 내라냥']
+            error = random.choice(errorsay)
+            await message.channel.send(str(error))
+        if score == 1:
+            showsay = ['가소롭다냥!','내가 이겼다냥!','너 하나쯤은 내가 이긴다냥!']
+            show = random.choice(showsay)
+        if score == 0:
+            show = '비겼다냥..!'
+        if score == -1:
+            showsay = ['*(부들부들)*','너 좀 한다냥?','내가 졌다냥... *(쭈글)*']
+            show = random.choice(showsay)
+        if select == '가위':
+            hand = ':v:'
+        if select == '바위':
+            hand = ':fist:'
+        if select == '보':
+            hand = ':raised_hand:'
+        if catselect == '가위':
+            cathand = ':v:'
+        if catselect == '바위':
+            cathand = ':fist:'
+        if catselect == '보':
+            cathand = ':raised_hand:'
+        await message.channel.send('<@' + str(message.author.id) + '> '+str(hand)+' vs '+str(cathand)+' **냥이**\n'+str(show))
+        
+    elif message.content == '냥이야 가위바위보':
+        embed=discord.Embed(title="'가위바위보' 사용법", color=0xABF200)
+        embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
+        await message.channel.send(embed=embed)
+
+# [번역]
+
+    elif message.content == '냥이야 번역':
+        embed=discord.Embed(
+            title="'번역' 사용법",
+            color=0xABF200
+            )
+        embed.add_field(
+            name='사용법',
+            value='`냥이야 번역 <번역할 언어><번역될 언어> <번역할 말>`',
+            inline=False)
+        embed.add_field(
+            name='번역 언어',
+            value='사이트주소',
+            inline=False)
+        await message.channel.send(embed=embed)
+
+    elif message.content.startswith('냥이야 번역 '):
+        try:
+            Text = str(message.content[10:])
+            client_id = "jsx44lysf3MT2A8yhDdF"
+            client_secret = "hCXg7z7NL0"
+            url = "https://openapi.naver.com/v1/papago/n2mt"
+            encText = urllib.parse.quote(Text)
+            if str(message.content[7]) == '한':
+                source = 'ko'
+                sourceset = '한국어'
+            elif str(message.content[7]) == '영':
+                source = 'en'
+                sourceset = '영어'
+            elif str(message.content[7]) == '일':
+                source = 'ja'
+                sourceset = '일본어'
+            elif str(message.content[7]) == '프':
+                source = 'fr'
+                sourceset = '프랑스어'
+            elif str(message.content[7]) == '독':
+                source = 'de'
+                sourceset = '독일어'
+            elif str(message.content[7]) == '러':
+                source = 'ru'
+                sourceset = '러시아어'
+            elif str(message.content[7]) == '스':
+                source = 'es'
+                sourceset = '스페인어'
+            else:
+                await message.channel.send('지원되지 않는 언어다냥!')
+                return
+            if str(message.content[8]) == '한':
+                target = 'ko'
+                targetset = '한국어'
+            elif str(message.content[8]) == '영':
+                target = 'en'
+                targetset = '영어'
+            elif str(message.content[8]) == '일':
+                target = 'ja'
+                targetset = '일본어'
+            elif str(message.content[8]) == '프':
+                target = 'fr'
+                targetset = '프랑스어'
+            elif str(message.content[8]) == '독':
+                target = 'de'
+                targetset = '독일어'
+            elif str(message.content[8]) == '러':
+                target = 'ru'
+                targetset = '러시아어'
+            elif str(message.content[8]) == '스':
+                target = 'es'
+                targetset = '스페인어'
+            else:
+                await message.channel.send('지원되지 않는 언어다냥!')
+                return
+            data = "source="+source+"&target="+target+"&text="+encText
+            request = urllib.request.Request(url)
+            request.add_header("X-Naver-Client-Id", client_id)
+            request.add_header("X-Naver-Client-Secret", client_secret)
+            response = urllib.request.urlopen(request, data=data.encode("utf-8"))
+            rescode = response.getcode()
+            if rescode == 200:
+                response_body = response.read()
+                data = response_body.decode('utf-8')
+                data = json.loads(data)
+                tranText = data['message']['result']['translatedText']
+            else:
+                await message.channel.send('오류가 발생했다냥: '+rescode)
+                return
+            embed=discord.Embed(
+                title=sourceset+' -> '+targetset+' 번역결과',
+                description=tranText,
+                color=0xFFE400
+            )
+            await message.channel.send(embed=embed)
+        except urllib.error.HTTPError:
+            await message.channel.send('오류가 발생했다냥: 400 Bad Request')
+
+# [계산]
 
     elif message.content == '냥이야 계산':
         embed=discord.Embed(title="'계산' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 계산 <식>`', inline=False)
-        embed.add_field(name='더하기/빼기', value='`+` 및 `-` 로 사용 가능', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `x`, `·`, `*` 로 사용 가능', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능\n거듭제곱의 지수는 `{ }` 안에 써야함\n10제곱,-10제곱을 넘으면 계산 불가능', inline=False)
-        embed.add_field(name='절댓값', value='`[ ]` 안에 써야함\n`| |` 필요 없음', inline=False)
-        embed.add_field(name='팩토리얼', value='`< >` 안에 써야함\n`!` 필요 없음', inline=False)
-        embed.add_field(name='제곱근', value='`$ %` 또는 `√ %` 안에 써야함', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        embed.add_field(name='더하기/빼기', value='`+` 및 `-` 로 나타냅니다', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `x`, `·`, `*` 로 나타냅니다', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다\n거듭제곱의 지수는 `{ }` 안에 써야합니다\n10제곱,-10제곱을 넘는 지수는 계산이 불가능합니다', inline=False)
+        embed.add_field(name='절댓값', value='`[ ]` 안에 수나 식을 써야합니다\n`| |` 는 없어도 됩니다', inline=False)
+        embed.add_field(name='팩토리얼', value='`< >` 안에 수나 식을 써야합니다\n`!` 는 없어도 됩니다', inline=False)
+        embed.add_field(name='제곱근', value='`$ %` 또는 `√ %` 안에 수나 식을 써야합니다', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 계산 '):
@@ -201,11 +354,11 @@ async def on_message(message):
     elif message.content == '냥이야 인수분해':
         embed=discord.Embed(title="'인수분해' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 인수분해 <식>`', inline=False)
-        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식 분해 가능함', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 사용 가능', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식을 인수분해할 수 있습니다', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 나타냅니다', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 전개 '):
@@ -245,11 +398,11 @@ async def on_message(message):
     elif message.content == '냥이야 전개':
         embed=discord.Embed(title="'전개' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 전개 <식>`', inline=False)
-        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식 전개 가능함', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 사용 가능', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식을 전개할 수 있습니다', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 나타냅니다', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 방정식 '):
@@ -344,75 +497,19 @@ async def on_message(message):
     
     elif message.content == '냥이야 방정식':
         embed=discord.Embed(title="'방정식' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 방정식 <x에 대한 다항식>=0`\n3차 이하의 방정식의 근을 구함', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 사용 가능', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 사용 가능', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 사용 가능', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야함', inline=False)
+        embed.add_field(name='사용법', value='`냥이야 방정식 <x에 대한 다항식>=0`\n3차 이하의 방정식의 해를 정확하게 구할 수 있고, 간단한 4차 이상의 방정식도 풀 수 있습니다', inline=False)
+        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 나타냅니다', inline=False)
+        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
+        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다', inline=False)
+        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
         await message.channel.send(embed=embed)
 
-# 가위바위보
-
-    elif message.content.startswith('냥이야 가위바위보 '):
-        cut = message.content.split(' ')
-        select = cut[2]
-        catfull = '가위 바위 보'
-        catfull = catfull.split(' ')
-        catselect = catfull[random.randint(0, 2)]
-        if select == catselect:
-            score = 0
-        elif select == '가위':
-            if catselect == '바위':
-                score = 1
-            if catselect == '보':
-                score = -1
-        elif select == '바위':
-            if catselect == '보':
-                score = 1
-            if catselect == '가위':
-                score = -1
-        elif select == '보':
-            if catselect == '가위':
-                score = 1
-            if catselect == '바위':
-                score = -1
-        else:
-            errorsay = ['...냥?','가위, 바위, 보 3개중에 하나를 내라냥']
-            error = random.choice(errorsay)
-            await message.channel.send(str(error))
-        if score == 1:
-            showsay = ['가소롭다냥!','내가 이겼다냥!','너 하나쯤은 내가 이긴다냥!']
-            show = random.choice(showsay)
-        if score == 0:
-            show = '비겼다냥..!'
-        if score == -1:
-            showsay = ['*(부들부들)*','너 좀 한다냥?','내가 졌다냥... *(쭈글)*']
-            show = random.choice(showsay)
-        if select == '가위':
-            hand = ':v:'
-        if select == '바위':
-            hand = ':fist:'
-        if select == '보':
-            hand = ':raised_hand:'
-        if catselect == '가위':
-            cathand = ':v:'
-        if catselect == '바위':
-            cathand = ':fist:'
-        if catselect == '보':
-            cathand = ':raised_hand:'
-        await message.channel.send('<@' + str(message.author.id) + '> '+str(hand)+' vs '+str(cathand)+' **냥이**\n'+str(show))
-        
-    elif message.content == '냥이야 가위바위보':
-        embed=discord.Embed(title="'가위바위보' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
-        await message.channel.send(embed=embed)
-
-# 지우기
+# [서버관리]/지우기
 
     elif message.content == '냥이야 지워':
         embed=discord.Embed(title="'지워' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 지워 <지울 메시지 수>`', inline=False)
-        embed.add_field(name='지울 메시지', value='자신의 메시지는 개수에 포함되지 않음', inline=False)
+        embed.add_field(name='지울 메시지', value='자신의 메시지는 지울 메시지의 수에 포함되지 않습니다', inline=False)
         await message.channel.send(embed=embed)
     
     elif message.content.startswith('냥이야 지워 '):
@@ -430,7 +527,7 @@ async def on_message(message):
         except ValueError:
             await message.channel.send('...도대체 뭘 원하는거냥?')
 
-# 돈(프로필 카테고리로 옮길 예정)
+# [경제]/돈(프로필 카테고리로 옮길 예정)
 
     elif message.content == '냥이야 돈':
         try:
@@ -446,15 +543,15 @@ async def on_message(message):
             await message.channel.send('돈 시스템을 처음 사용하는 <@'+str(message.author.id)+'> 에게 **5000원**을 지급했다냥!')
             await client.get_channel(790406561070972948).send(catmoney)
 
-# 도박
+# [경제]/도박
 
     elif message.content == '냥이야 도박':
         embed=discord.Embed(title="'도박' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 도박 <거는 돈/올인/절반>`', inline=False)
-        embed.add_field(name='거는 돈', value='보유한 돈보다 많은 돈을 걸 수 없음', inline=False)
+        embed.add_field(name='거는 돈', value='보유한 돈보다 더 많은 돈을 걸 수 없습니다', inline=False)
         embed.add_field(name='확률', value='일반 도박 : `실패 65%`, `2배 20%`, `3배 9%`, `5배 4%`, `특수 2%`\n올인 도박 : `실패 89%`, `4배 5%`, `5배 3%`, `7배 2%`, `특수 1%`', inline=False)
-        embed.add_field(name='올인', value='거는 돈을 보유한 돈으로 설정함. 이 때, 실패율과 성공배율이 대폭 증가함', inline=False)
-        embed.add_field(name='절반', value='거는 돈을 보유한 돈의 절반으로 설정함. 이 때, 확률은 일반도박과 동일함', inline=False)
+        embed.add_field(name='올인', value='거는 돈을 보유한 돈 전체로 설정합니다. 이 때, 실패율과 성공배율이 대폭 증가합니다', inline=False)
+        embed.add_field(name='절반', value='거는 돈을 보유한 돈의 절반으로 설정합니다. 이 때, 확률은 일반도박과 동일합니다', inline=False)
         embed.add_field(name='계산법', value='`돈` = `보유한 돈` - `거는 돈` + (`거는 돈` x `배율`)', inline=False)
         await message.channel.send(embed=embed)
     
@@ -585,14 +682,14 @@ async def on_message(message):
                 say = random.choice(saylist)
                 await message.channel.send(str(say))
                 
-# 예외처리
+# [기타]/예외처리
 
     elif message.content.startswith('냥이야 '):
         saylist = ['냥...?','냥?','무슨 말인지 모르겠다냥']
         say = random.choice(saylist)
         await message.channel.send(str(say))
 
-# 명령어
+# [기타]/명령어
 
     elif message.content.startswith('/data'):
         if message.author.id == 519751765080408074:
