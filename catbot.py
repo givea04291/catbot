@@ -34,10 +34,25 @@ async def on_message(message):
 # [미니게임]/주사위
 
     elif message.content == '냥이야 주사위':
-        embed=discord.Embed(title="'주사위' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 주사위 <면의 개수>`', inline=False)
-        embed.add_field(name='면의 개수', value='주사위 면의 수는 0보다 큰 정수여야 합니다.', inline=False)
-        embed.add_field(name='꽝', value='5%의 확률로 꽝이 나옴', inline=False)
+        embed=discord.Embed(
+            title="'주사위' 사용법",
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법',
+            value='`냥이야 주사위 <면의 개수>`',
+            inline=False
+        )
+        embed.add_field(
+            name='면의 개수',
+            value='주사위 면의 수는 0보다 큰 정수여야 합니다.',
+            inline=False
+        )
+        embed.add_field(
+            name='꽝',
+            value='5%의 확률로 꽝이 나옴',
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 주사위 '):
@@ -63,8 +78,15 @@ async def on_message(message):
 # [미니게임]/선택
 
     elif message.content == '냥이야 골라':
-        embed=discord.Embed(title="'골라' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 골라 <옵션1> [옵션2] [옵션3] …`', inline=False)
+        embed=discord.Embed(
+            title="'골라' 사용법", 
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 골라 <옵션1> [옵션2] [옵션3] …`', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 골라 '):
@@ -125,8 +147,15 @@ async def on_message(message):
         await message.channel.send('<@' + str(message.author.id) + '> '+str(hand)+' vs '+str(cathand)+' **냥이**\n'+str(show))
         
     elif message.content == '냥이야 가위바위보':
-        embed=discord.Embed(title="'가위바위보' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
+        embed=discord.Embed(
+            title="'가위바위보' 사용법", 
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 가위바위보 <가위/바위/보>`', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
 # [시간]
@@ -191,15 +220,17 @@ async def on_message(message):
         embed=discord.Embed(
             title="'번역' 사용법",
             color=0xABF200
-            )
+        )
         embed.add_field(
             name='사용법',
             value='`냥이야 번역 <번역할 언어><번역될 언어> <번역할 말>`',
-            inline=False)
+            inline=False
+        )
         embed.add_field(
             name='번역 언어',
             value='사이트주소',
-            inline=False)
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 번역 '):
@@ -283,16 +314,55 @@ async def on_message(message):
 # [계산]
 
     elif message.content == '냥이야 계산':
-        embed=discord.Embed(title="'계산' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 계산 <식>`', inline=False)
-        embed.add_field(name='더하기/빼기', value='`+` 및 `-` 로 나타냅니다', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `x`, `·`, `*` 로 나타냅니다', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다\n거듭제곱의 지수는 `{ }` 안에 써야합니다\n10제곱,-10제곱을 넘는 지수는 계산이 불가능합니다', inline=False)
-        embed.add_field(name='절댓값', value='`[ ]` 안에 수나 식을 써야합니다\n`| |` 는 없어도 됩니다', inline=False)
-        embed.add_field(name='팩토리얼', value='`< >` 안에 수나 식을 써야합니다\n`!` 는 없어도 됩니다', inline=False)
-        embed.add_field(name='제곱근', value='`$ %` 또는 `√ %` 안에 수나 식을 써야합니다', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
+        embed=discord.Embed(
+            title="'계산' 사용법",
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 계산 <식>`', 
+            inline=False
+        )
+        embed.add_field(
+            name='더하기/빼기', 
+            value='`+` 및 `-` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='곱하기', 
+            value='`×`, `x`, `·`, `*` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='나누기', 
+            value='`÷`, `/` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='거듭제곱', 
+            value='`^`, `**` 로 나타냅니다\n거듭제곱의 지수는 `{ }` 안에 써야합니다\n10제곱,-10제곱을 넘는 지수는 계산이 불가능합니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='절댓값', 
+            value='`[ ]` 안에 수나 식을 써야합니다\n`| |` 는 없어도 됩니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='팩토리얼', 
+            value='`< >` 안에 수나 식을 써야합니다\n`!` 는 없어도 됩니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='제곱근', 
+            value='`$ %` 또는 `√ %` 안에 수나 식을 써야합니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='괄호', 
+            value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 계산 '):
@@ -411,13 +481,40 @@ async def on_message(message):
                 await message.channel.send('**'+str(inp)+' = '+str(show)+'** (이)다냥!')
 
     elif message.content == '냥이야 인수분해':
-        embed=discord.Embed(title="'인수분해' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 인수분해 <식>`', inline=False)
-        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식을 인수분해할 수 있습니다', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 나타냅니다', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
+        embed=discord.Embed(
+            title="'인수분해' 사용법", 
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 인수분해 <식>`', 
+            inline=False
+        )
+        embed.add_field(
+            name='수식', 
+            value='a, b, c, x, y, z에 대한 다항식을 인수분해할 수 있습니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='곱하기', 
+            value='`×`, `·`, `*` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='나누기', 
+            value='`÷`, `/` 로 나타냅니다',
+            inline=False
+        )
+        embed.add_field(
+            name='거듭제곱', 
+            value='`^`, `**` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='괄호', 
+            value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 전개 '):
@@ -455,13 +552,40 @@ async def on_message(message):
                 await message.channel.send('전개할 수 없는 식이다냥')
 
     elif message.content == '냥이야 전개':
-        embed=discord.Embed(title="'전개' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 전개 <식>`', inline=False)
-        embed.add_field(name='수식', value='a, b, c, x, y, z에 대한 다항식을 전개할 수 있습니다', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 나타냅니다', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
+        embed=discord.Embed(
+            title="'전개' 사용법", 
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 전개 <식>`', 
+            inline=False
+        )
+        embed.add_field(
+            name='수식', 
+            value='a, b, c, x, y, z에 대한 다항식을 전개할 수 있습니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='곱하기', 
+            value='`×`, `·`, `*` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='나누기', 
+            value='`÷`, `/` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='거듭제곱', 
+            value='`^`, `**` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='괄호', 
+            value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
     elif message.content.startswith('냥이야 방정식 '):
@@ -555,20 +679,54 @@ async def on_message(message):
             await message.channel.send('방정식은 `x에 대한 다항식 = 0` 의 형태여야 한다냥')
     
     elif message.content == '냥이야 방정식':
-        embed=discord.Embed(title="'방정식' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 방정식 <x에 대한 다항식>=0`\n3차 이하의 방정식의 해를 정확하게 구할 수 있고, 간단한 4차 이상의 방정식도 풀 수 있습니다', inline=False)
-        embed.add_field(name='곱하기', value='`×`, `·`, `*` 로 나타냅니다', inline=False)
-        embed.add_field(name='나누기', value='`÷`, `/` 로 나타냅니다', inline=False)
-        embed.add_field(name='거듭제곱', value='`^`, `**` 로 나타냅니다', inline=False)
-        embed.add_field(name='괄호', value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', inline=False)
+        embed=discord.Embed(
+            title="'방정식' 사용법", 
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 방정식 <x에 대한 다항식>=0`\n3차 이하의 방정식의 해를 정확하게 구할 수 있고, 간단한 4차 이상의 방정식도 풀 수 있습니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='곱하기', 
+            value='`×`, `·`, `*` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='나누기', 
+            value='`÷`, `/` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='거듭제곱', 
+            value='`^`, `**` 로 나타냅니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='괄호', 
+            value='거듭제곱의 지수를 제외한 모든 괄호는 `( )` 로 써야합니다', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
 
 # [서버관리]/지우기
 
     elif message.content == '냥이야 지워':
-        embed=discord.Embed(title="'지워' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 지워 <지울 메시지 수>`', inline=False)
-        embed.add_field(name='지울 메시지', value='자신의 메시지는 지울 메시지의 수에 포함되지 않습니다', inline=False)
+        embed=discord.Embed(
+            title="'지워' 사용법", 
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 지워 <지울 메시지 수>`', 
+            inline=False
+        )
+        embed.add_field(
+            name='지울 메시지', 
+            value='자신의 메시지는 지울 메시지의 수에 포함되지 않습니다', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
     
     elif message.content.startswith('냥이야 지워 '):
@@ -605,13 +763,40 @@ async def on_message(message):
 # [경제]/도박
 
     elif message.content == '냥이야 도박':
-        embed=discord.Embed(title="'도박' 사용법", color=0xABF200)
-        embed.add_field(name='사용법', value='`냥이야 도박 <거는 돈/올인/절반>`', inline=False)
-        embed.add_field(name='거는 돈', value='보유한 돈보다 더 많은 돈을 걸 수 없습니다', inline=False)
-        embed.add_field(name='확률', value='일반 도박 : `실패 65%`, `2배 20%`, `3배 9%`, `5배 4%`, `특수 2%`\n올인 도박 : `실패 89%`, `4배 5%`, `5배 3%`, `7배 2%`, `특수 1%`', inline=False)
-        embed.add_field(name='올인', value='거는 돈을 보유한 돈 전체로 설정합니다. 이 때, 실패율과 성공배율이 대폭 증가합니다', inline=False)
-        embed.add_field(name='절반', value='거는 돈을 보유한 돈의 절반으로 설정합니다. 이 때, 확률은 일반도박과 동일합니다', inline=False)
-        embed.add_field(name='계산법', value='`돈` = `보유한 돈` - `거는 돈` + (`거는 돈` x `배율`)', inline=False)
+        embed=discord.Embed(
+            title="'도박' 사용법", 
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법', 
+            value='`냥이야 도박 <거는 돈/올인/절반>`', 
+            inline=False
+        )
+        embed.add_field(
+            name='거는 돈', 
+            value='보유한 돈보다 더 많은 돈을 걸 수 없습니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='확률', 
+            value='일반 도박 : `실패 65%`, `2배 20%`, `3배 9%`, `5배 4%`, `특수 2%`\n올인 도박 : `실패 89%`, `4배 5%`, `5배 3%`, `7배 2%`, `특수 1%`', 
+            inline=False
+        )
+        embed.add_field(
+            name='올인', 
+            value='거는 돈을 보유한 돈 전체로 설정합니다. 이 때, 실패율과 성공배율이 대폭 증가합니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='절반', 
+            value='거는 돈을 보유한 돈의 절반으로 설정합니다. 이 때, 확률은 일반도박과 동일합니다', 
+            inline=False
+        )
+        embed.add_field(
+            name='계산법', 
+            value='`돈` = `보유한 돈` - `거는 돈` + (`거는 돈` x `배율`)', 
+            inline=False
+        )
         await message.channel.send(embed=embed)
     
     elif message.content.startswith('냥이야 도박 '):
