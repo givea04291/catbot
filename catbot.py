@@ -6,9 +6,12 @@ from sympy import factor, expand, symbols, solve
 import sys
 import json
 import urllib.request
+import datetime
+import pytz
+from pytz import common_timezones
 
 
-catmoney = {519751765080408074: 35000, 645266885495226388: 1, 473827858175754250: 1, 390057085209149440: 5000, 633224033667907584: 0, 582832386748973057: 2262000, 485716741289279488: 1, 535758069620277249: 0, 704479706505936978: 0, 554214990001995776: 0}
+catmoney = {519751765080408074: 5000, 645266885495226388: 1, 473827858175754250: 1, 390057085209149440: 100000099000, 633224033667907584: 0, 582832386748973057: 2262000, 485716741289279488: 1, 535758069620277249: 0, 704479706505936978: 0, 554214990001995776: 0}
 
 client = discord.Client()
 
@@ -125,6 +128,62 @@ async def on_message(message):
         embed=discord.Embed(title="'가위바위보' 사용법", color=0xABF200)
         embed.add_field(name='사용법', value='`냥이야 가위바위보 <가위/바위/보>`', inline=False)
         await message.channel.send(embed=embed)
+
+# [시간]
+
+    elif message.content == '냥이야 시간':
+        embed=discord.Embed(
+            title="'시간' 사용법",
+            color=0xABF200
+        )
+        embed.add_field(
+            name='사용법',
+            value='`냥이야 시간 <시간대 번호/지역/.>`',
+            inline=False
+        )
+        embed.add_field(
+            name='시간대',
+            value='`.`을 입력하면 시간대가 KST(한국 표준시)로 지정됩니다\n사이트주소',
+            inline=False
+        )
+        await message.channel.send(embed=embed)
+
+    elif message.content.startswith('냥이야 시간 '):
+        timeref = {}
+        a = 1
+        for zones in common_timezones:
+            timeref[a] = zones
+            a = a+1
+        timenum = message.content.split(' ')
+        try:
+            timenum = int(timenum[2])
+            if timenum > 440 or timenum < 1:
+                await message.channel.send('잘못된 시간대이다냥')
+            else:
+                timez = timeref[timenum]
+        except ValueError:
+            timenum = str(timenum[2])
+            timez = timenum
+            if timez == '.':
+                timez = 'Asia/Seoul'   
+        try:
+            time = str(datetime.datetime.now(pytz.timezone(timez)))
+            space_split = time.split(' ')
+            time_first = space_split[0]
+            time_first_split = time_first.split('-')
+            time_year = time_first_split[0]
+            time_month = time_first_split[1]
+            time_day = time_first_split[2]
+            time_second = space_split[1]
+            time_second_split1 = time_second.split('.')
+            time_second_split1 = time_second_split1[0]
+            time_second_split2 = time_second_split1.split(':')
+            time_hour = time_second_split2[0]
+            time_minute = time_second_split2[1]
+            time_seconds = time_second_split2[2]
+            await message.channel.send(timez+'의 지금 시간은 '+str(time_year)+'년 '+str(time_month)+'월 '+str(time_day)+'일 '+str(time_hour)+'시 '+str(time_minute)+'분 '+str(time_seconds)+'초다냥!')
+        except pytz.exceptions.UnknownTimeZoneError:
+            await message.channel.send('잘못된 시간대이다냥')
 
 # [번역]
 
